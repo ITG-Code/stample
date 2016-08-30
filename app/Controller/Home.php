@@ -6,8 +6,10 @@ class Home extends Controller
     {
     }
 
-    public function index($args){
+    public function index($args = []){
 
         $this->model('user');
+
+        $this->view('home/index', []);
     }
 }
