@@ -1,8 +1,3 @@
-<?php
-	$data['tid'] = "2016-25-6";
-?>
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -21,12 +16,27 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-2">
-					<a href="#" class="btn btn-primary btn-large">Stämpla ut</a>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<a href="#" class="btn btn-primary btn-lg">Stämpla ut</a>
 				</div>
-				<div class="col-lg-2">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<div class="well">
 						<p id="txt"></p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="hidden-lg hidden-md col-sm-12 col-xs-12">
+					<div class="well">
+						<p>här ska det vara klockslaget när man stämplade in</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<a href="#" class="btn btn-danger btn-lg">Logga ut</a>
+				</div>
+				<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+					<div class="well">
+						<p>här ska det vara klockslaget när man stämplade in</p>
 					</div>
 				</div>
 			</div>
