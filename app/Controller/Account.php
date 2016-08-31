@@ -6,16 +6,22 @@ class Account extends Controller
 
     public function index($args = [])
     {
-
+        $this->user = $this->model('User');
         $this->view('account/index', ['email' => Session::get("email")]);
     }
 
     public function login()
     {
-        $this->user = $this->model('User');
-        if ($this->user->login()) {
+        if ($this->user->login())
             Redirect::to('/account/home');
-        }
+        else
+            Redirect::to('/home/login');
 
+    }
+
+    public function logout()
+    {
+        $this->user->logout();
+        Redirect::to("/home/login");
     }
 }
