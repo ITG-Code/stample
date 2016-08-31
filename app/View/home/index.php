@@ -13,7 +13,8 @@
     <form method="post" class="form-horizontal" action="/public/account/login">
         <fieldset>
             <div class="form-group">
-                <input class="form-control input-lg" type="email" name="login-email" placeholder="Email ex.stefan.folkesson@it-gymnasiet.se">
+                <input class="form-control input-lg" type="email" name="login-email"
+                       placeholder="Email ex.stefan.folkesson@it-gymnasiet.se">
             </div>
             <div class="form-group">
                 <input class="form-control input-lg" type="password" name="login-password" placeholder="Lösenord">
@@ -25,7 +26,6 @@
     </form>
 </div>
 </body>
-
 
 
 <footer>
