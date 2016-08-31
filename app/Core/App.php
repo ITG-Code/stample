@@ -35,7 +35,7 @@ class App
         if (isset($_GET['url'])) {
             return explode('/',
                 filter_var(
-                    str_replace(" ", "_",
+                    str_replace(" ", "-",
                         trim($_GET['url'], '/')
                     )
                     , FILTER_SANITIZE_URL

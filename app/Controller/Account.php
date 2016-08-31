@@ -3,12 +3,15 @@
 class Account extends Controller
 {
     private $user;
+    public function __construct()
+    {
+        $this->user = $this->model('User');
+    }
 
     public function index($args = [])
     {
-        $this->user = $this->model('User');
         if (!$this->user->loggedIn())
-            Redirect::to("/home/login");
+            Redirect::to("/home");
 
         $this->view('account/index', ['email' => Session::get("email")]);
     }
@@ -18,13 +21,14 @@ class Account extends Controller
         if ($this->user->login())
             Redirect::to('/account/home');
         else
-            Redirect::to('/home/login');
+            Redirect::to('/home');
 
     }
 
     public function logout()
     {
+
         $this->user->logout();
-        Redirect::to("/home/login");
+        Redirect::to("/home");
     }
 }
