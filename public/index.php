@@ -16,9 +16,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2 col-xs-12 col-md-2">
-					<a href="#" class="btn btn-primary btn-lg">Stämlpa in</a>
+					<a href="#" class="btn btn-primary btn-lg">Stämpla in</a>
 				</div>
-				<div class="col-lg-2 col-xs-12 col-md-2">
+				<div class="col-lg-2 col-xs-6 col-md-2">
 					<div class="well">
 						<p id="txt"></p>
 					</div>
