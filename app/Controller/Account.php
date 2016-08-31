@@ -7,6 +7,9 @@ class Account extends Controller
     public function index($args = [])
     {
         $this->user = $this->model('User');
+        if (!$this->user->loggedIn())
+            Redirect::to("/home/login");
+
         $this->view('account/index', ['email' => Session::get("email")]);
     }
 
