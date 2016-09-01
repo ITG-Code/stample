@@ -24,8 +24,7 @@ class Database extends DatabaseConfig
     // Constructor
     private function __construct()
     {
-        $this->_connection = new mysqli($this->_host, $this->_username,
-            $this->_password, $this->_database);
+        $this->_connection = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
 
         // Error handling
         if (mysqli_connect_error()) {
