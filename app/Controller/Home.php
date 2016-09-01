@@ -6,17 +6,17 @@ use Stample\Helpers\Redirect;
 
 class Home extends Controller
 {
-    public function __construct()
-    {
-    }
+  public function __construct()
+  {
+  }
 
-    public function index($args = [])
-    {
+  public function index($args = [])
+  {
 
-        $user = $this->model('user');
-        if($user->isLoggedIn())
-            Redirect::to("/account/home");
+    $user = $this->model('user');
+    if($user->isLoggedIn())
+      Redirect::to("/account/home");
 
-        $this->view('home/index', []);
-    }
+    $this->view('home/index', []);
+  }
 }

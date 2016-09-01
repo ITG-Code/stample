@@ -7,42 +7,44 @@ use \Stample\Helpers\Session;
 
 class Account extends Controller
 {
-    private $user;
+  private $user;
 
-    public function __construct()
-    {
-        $this->user = $this->model('User');
-        $this->user->prepare();
-    }
+  public function __construct()
+  {
+    $this->user = $this->model('User');
+    $this->user->prepare();
+  }
 
-    public function index($args = [])
-    {
-        if (!$this->user->isLoggedIn())
-            Redirect::to("/home");
+  public function index($args = [])
+  {
+    if(!$this->user->isLoggedIn())
+      Redirect::to("/home");
 
-        $this->view('account/index', [
-            'email' => Session::get("email"),
-            'lastcheck' => $this->user->getLastCheck(),
-        ]);
-    }
+    $this->view('account/index', [
+        'email' => Session::get("email"),
+        'lastcheck' => $this->user->getLastCheck(),
+    ]);
+  }
 
-    public function login()
-    {
-        if ($this->user->login())
-            Redirect::to('/account/home');
-        else
-            Redirect::to('/home');
+  public function login()
+  {
+    if($this->user->login())
+      Redirect::to('/account/home');
+    else
+      Redirect::to('/home');
 
-    }
+  }
 
-    public function logout()
-    {
+  public function logout()
+  {
 
-        $this->user->logout();
-        Redirect::to("/home");
-    }
-    public function checkIn(){
-        $this->user->checkIn();
-        Redirect::to("/account/home");
-    }
+    $this->user->logout();
+    Redirect::to("/home");
+  }
+
+  public function checkIn()
+  {
+    $this->user->checkIn();
+    Redirect::to("/account/home");
+  }
 }
