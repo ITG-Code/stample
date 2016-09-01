@@ -28,6 +28,9 @@ class User
     {
         return boolval(Session::get("SessionUser")) ? $this->doesIDExist(Session::get('SessionUser')) : false;
     }
+    public function logout(){
+        Session::delete("SessionUser");
+    }
 
     private function createSelfFromEmail($email)
     {
