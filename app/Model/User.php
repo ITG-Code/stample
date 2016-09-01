@@ -1,5 +1,7 @@
 <?php
-
+namespace Stample\Model;
+use \Stample\Core\Database;
+use \Stample\Helpers\Session;
 class User
 {
     public $id;
@@ -12,12 +14,11 @@ class User
     {
         $this->email = $_POST['login-email'];
         $this->password = $_POST['login-password'];
-
         if (password_verify($this->password, $this->createSelfFromEmail($this->email))) {
-            Session::set("sessionUser", $this->id);
+            Session::set("SessionUser", $this->id);
             return true;
         } else {
-            Session::delete("sessionUser");
+            Session::delete("SessionUser");
             return false;
         }
 
@@ -25,7 +26,10 @@ class User
 
     public function isLoggedIn()
     {
-        return boolval(Session::get("SessionUser")) ? $this->doesIDExist(Session::get('sessionUser')) : false;
+        return boolval(Session::get("SessionUser")) ? $this->doesIDExist(Session::get('SessionUser')) : false;
+    }
+    public function logout(){
+        Session::delete("SessionUser");
     }
 
     private function createSelfFromEmail($email)
@@ -37,12 +41,23 @@ class User
         $stmt->close();
         $hashedPassword = "";
         if ($obj = $res->fetch_object()) {
+            //var_dump($obj);
             $this->id = $obj->id;
             $this->fname = $obj->fname;
             $this->sname = $obj->sname;
             $hashedPassword = $obj->password;
         }
         return boolval($hashedPassword) ? $hashedPassword : false;
+    }
+    public function register(){
+        $name = "Kokt";
+        $last = "Korv";
+        $email = "kokt@korv.se";
+        $password = "1234";
+        $password = password_hash($password, PASSWORD_BCRYPT);
+        $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO user(email, password, fname, sname) VALUES(?,?,?,?)");
+        $stmt->bind_param('ssss', $email, $password, $name, $last);
+        $stmt->execute();
     }
 
     private function doesIDExist($id)

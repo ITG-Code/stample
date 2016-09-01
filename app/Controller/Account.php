@@ -1,14 +1,23 @@
 <?php
+namespace Stample\Controller;
+
+use \Stample\Core\Controller;
+use \Stample\Helpers\Redirect;
+use \Stample\Helpers\Session;
 
 class Account extends Controller
 {
     private $user;
 
-    public function index($args = [])
+    public function __construct()
     {
         $this->user = $this->model('User');
-        if (!$this->user->loggedIn())
-            Redirect::to("/home/login");
+    }
+
+    public function index($args = [])
+    {
+        if (!$this->user->isLoggedIn())
+            Redirect::to("/home");
 
         $this->view('account/index', ['email' => Session::get("email")]);
     }
@@ -18,13 +27,14 @@ class Account extends Controller
         if ($this->user->login())
             Redirect::to('/account/home');
         else
-            Redirect::to('/home/login');
+            Redirect::to('/home');
 
     }
 
     public function logout()
     {
+
         $this->user->logout();
-        Redirect::to("/home/login");
+        Redirect::to("/home");
     }
 }

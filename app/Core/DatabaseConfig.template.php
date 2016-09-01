@@ -1,5 +1,5 @@
 <?php
-
+namespace Stample\Core;
 /**
  * Class DatabaseConfig
  * Rename file to DatabaseConfig.php in order for the Database class to work

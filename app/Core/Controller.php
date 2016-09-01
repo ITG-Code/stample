@@ -1,5 +1,5 @@
 <?php
-
+namespace Stample\Core;
 class Controller
 {
 
@@ -10,10 +10,9 @@ class Controller
     }
 
 
-    public function model($model)
+    public static function model($model)
     {
-        require_once '../app/Model/' . ucfirst($model) . '.php';
-
+        $model = '\Stample\Model\\' . $model;
         return new $model();
     }
 }

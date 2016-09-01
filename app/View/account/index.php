@@ -1,44 +1,41 @@
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../../../public/css/flatly.css">
-    <script type="text/javascript">
-        function startTid() {
-            var idag = new Date();
-            var t = idag.getHours();
-            var m = idag.getMinutes();
-            var s = idag.getSeconds();
-            m = checkTime(m);
-            s = checkTime(s);
-            document.getElementById('txt').innerHTML
-        }
-    </script>
-</head>
+<!DOCTYPE html>
+<html>
 
-<body>
-<div class="jumbotron">
-    <div class="container">
-        <h2>Namn</h2>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-4">
-            <a href="#" class="btn btn-primary btn-lg">Stämlpa in</a>
-        </div>
-        <div class="col-lg-4">
+	<head>
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	  <link rel="stylesheet" type="text/css" href="/public/css/flatly.css">
+	  <script type="text/javascript" src="/public/js/klocka.js"></script>
+	</head>
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <a href="#" class="btn btn-danger btn-lg">Logga ut</a>
-        </div>
-    </div>
-</div>
-</body>
+	<body onload="startTid()">
+		<div class="jumbotron">
+			<div class="container">
+				<h2>Namn</h2>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-xs-12 col-md-2">
+					<a href="" class="btn btn-primary btn-lg">Stämpla in</a>
+				</div>
+				<div class="col-lg-2 col-xs-6 col-md-2">
+					<div class="well">
+						<p id="txt"></p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-xs-12">
+					<a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
+				</div>
+			</div>
+		</div>	
+	</body>
 
 
-<footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</footer>
+
+	<footer>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</footer>
+</html>

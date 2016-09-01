@@ -1,0 +1,18 @@
+{
+    "name": "itg-code/stample",
+    "description": "A clocking service to track employees hours",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "twig/twig": "^1.24"
+    },    
+    "require-dev": {
+        "joseph-lenton/php-error": "dev-master"
+    },
+  "autoload": {
+        "psr-4": {
+            "Stample\\": "app/"
+        }
+    },
+    "minimum-stability": "dev"
+}
