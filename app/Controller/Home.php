@@ -13,9 +13,7 @@ class Home extends Controller
 
   public function index($args = [])
   {
-
-    $user = $this->model('user');
-    if($user->isLoggedIn())
+    if($this->user->isLoggedIn())
       Redirect::to("/account/home");
 
     $this->view('home/index', []);

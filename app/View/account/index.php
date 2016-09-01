@@ -32,8 +32,12 @@ $lastcheck = $data['lastcheck'];
       <a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
     </div>
   </div>
-
-  lastcheck->getCheckValue() ? "Du är instämplad!" : "Du är inte instämplad!";
+    {{ user.lastcheck }}
+  {% if user.lastcheck.checkvalue == 0 %}
+    Du är instämplad!
+  {% else %}
+    Du är inte instämplad!
+  {% endif %}
 </div>
 </body>
 

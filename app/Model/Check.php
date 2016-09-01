@@ -135,5 +135,8 @@ class Check
     return $this->stamp;
   }
 
+  public function getViewModel(){
+    return new \Stample\ViewModel\Check($this->id, $this->checkgroup, $this->checkvalue, $this->user, $this->stamp);
+  }
 
 }

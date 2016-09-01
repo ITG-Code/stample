@@ -7,13 +7,10 @@ use \Stample\Helpers\Session;
 
 class Account extends Controller
 {
-  private $user;
 
   public function __construct()
   {
     parent::__construct();
-    $this->user = $this->model('User');
-    $this->user->prepare();
   }
 
   public function index($args = [])
@@ -22,8 +19,7 @@ class Account extends Controller
       Redirect::to("/home");
 
     $this->view('account/index', [
-        'email' => Session::get("email"),
-        'lastcheck' => $this->user->getLastCheck(),
+        'user' => $this->user->getViewModel(),
     ]);
   }
 

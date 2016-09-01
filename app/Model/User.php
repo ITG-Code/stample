@@ -16,8 +16,12 @@ class User
   public function prepare()
   {
     if($this->isLoggedIn()) {
-      $this->createSelfFromID($this->id);
       $this->id = Session::get("SessionUser");
+      if($this->getCheckCount())
+        $this->createExtendedSelfFromID($this->id);
+      else
+        $this->createSelfFromID($this->id);
+
     }
   }
 
@@ -62,10 +66,26 @@ class User
     }
     return boolval($hashedPassword) ? $hashedPassword : false;
   }
-
   private function createSelfFromID($id)
   {
-    $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup checkvalue, stamp FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = ? ORDER BY `check`.id DESC LIMIT 1");
+    $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM user WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $stmt->close();
+    $hashedPassword = "";
+    if($obj = $res->fetch_object()) {
+      //var_dump($obj);
+      $this->id = $obj->id;
+      $this->fname = $obj->fname;
+      $this->sname = $obj->sname;
+      $hashedPassword = $obj->password;
+    }
+    return boolval($hashedPassword) ? $hashedPassword : false;
+  }
+  private function createExtendedSelfFromID($id)
+  {
+    $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup, checkvalue, stamp FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = ? ORDER BY `check`.id DESC LIMIT 1");
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $res = $stmt->get_result();
@@ -77,7 +97,7 @@ class User
       $this->fname = $obj->fname;
       $this->sname = $obj->sname;
       $hashedPassword = $obj->password;
-      $this->lastCheck = new Check($this->id, [
+      $this->lastCheck = new \Stample\Model\Check($this->id, [
           "checkid" => $obj->checkid,
           "checkvalue" => $obj->checkvalue,
           "checkgroup" => $obj->checkgroup,
@@ -87,6 +107,7 @@ class User
     }
     return boolval($hashedPassword) ? $hashedPassword : false;
   }
+
 
   public function register()
   {
@@ -111,11 +132,20 @@ class User
     $row = $res->fetch_object();
     return boolval($row->idcount);
   }
+  private function getCheckCount(){
+    $stmt = Database::getInstance()->getConnection()->prepare("SELECT count(*) as rowcount FROM `check` WHERE user = ?");
+    $stmt->bind_param('i', $this->id);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $stmt->close();
+    $row = $res->fetch_object();
+    return $row->rowcount;
+  }
 
   public function checkIn()
   {
     if(!isset($this->lastCheck)) {
-      $this->lastCheck = new Check($this->id);
+      $this->lastCheck = new \Stample\Model\Check($this->id);
     }
     $this->lastCheck->checkIn();
   }
@@ -123,5 +153,8 @@ class User
   public function getLastCheck()
   {
     return $this->lastCheck;
+  }
+  public function getViewModel(){
+    return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, $this->lastCheck->getViewModel());
   }
 }
