@@ -1,5 +1,5 @@
 <?php
-
+namespace Stample\Core;
 class App
 {
     private $controller = "home";
@@ -15,8 +15,7 @@ class App
             $this->controller = $url[0];
             unset($url[0]);
         }
-        require_once '../app/Controller/' . ucfirst($this->controller) . '.php';
-
+        $this->controller = "\\Stample\\Controller\\" . ucfirst($this->controller);
         $this->controller = new $this->controller;
 
         if (isset($url[1])) {

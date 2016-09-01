@@ -1,5 +1,5 @@
 <?php
-
+namespace Stample\Helpers;
 class Session
 {
     public static function set($name, $value)
