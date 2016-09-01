@@ -12,6 +12,7 @@ class Account extends Controller
     public function __construct()
     {
         $this->user = $this->model('User');
+        $this->user->prepare();
     }
 
     public function index($args = [])
@@ -19,7 +20,10 @@ class Account extends Controller
         if (!$this->user->isLoggedIn())
             Redirect::to("/home");
 
-        $this->view('account/index', ['email' => Session::get("email")]);
+        $this->view('account/index', [
+            'email' => Session::get("email"),
+            'lastcheck' => $this->user->getLastCheck(),
+        ]);
     }
 
     public function login()
@@ -36,5 +40,9 @@ class Account extends Controller
 
         $this->user->logout();
         Redirect::to("/home");
+    }
+    public function checkIn(){
+        $this->user->checkIn();
+        Redirect::to("/account/home");
     }
 }

@@ -11,6 +11,12 @@ class User
     public $sname;
     private $lastCheck;
 
+    public function prepare()  {
+        if($this->isLoggedIn()){
+            $this->createSelfFromID($this->id);
+            $this->id = Session::get("SessionUser");
+        }
+    }
 
     public function login()
     {
@@ -51,9 +57,9 @@ class User
         }
         return boolval($hashedPassword) ? $hashedPassword : false;
     }
-    private function createSelfFromID(){
-        $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup checkvalue, stamp FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = 8 ORDER BY `check`.id DESC LIMIT 1");
-        $stmt->bind_param('s', $email);
+    private function createSelfFromID($id){
+        $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup checkvalue, stamp FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = ? ORDER BY `check`.id DESC LIMIT 1");
+        $stmt->bind_param('i', $id);
         $stmt->execute();
         $res = $stmt->get_result();
         $stmt->close();
@@ -67,8 +73,9 @@ class User
             $this->lastCheck = new Check($this->id,[
                 "checkid" => $obj->checkid,
                 "checkvalue" => $obj->checkvalue,
-                "checkgorup" => $obj->checkgroup,
+                "checkgroup" => $obj->checkgroup,
                 "stamp" => $obj->stamp,
+
                 ]);
         }
         return boolval($hashedPassword) ? $hashedPassword : false;
@@ -96,10 +103,12 @@ class User
         return boolval($row->idcount);
     }
     public function checkIn(){
-        if(!boolval($this->lastCheck)){
-            $this->lastCheck = new Check();
+        if(!isset($this->lastCheck)){
+            $this->lastCheck = new Check($this->id);
         }
-        $this->lastCheck->setUser($this->id);
         $this->lastCheck->checkIn();
+    }
+    public function getLastCheck(){
+        return $this->lastCheck;
     }
 }

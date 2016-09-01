@@ -1,3 +1,6 @@
+<?php
+$lastcheck = $data['lastcheck'];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +19,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2 col-xs-12 col-md-2">
-					<a href="" class="btn btn-primary btn-lg">Stämpla in</a>
+					<a href="/public/account/checkin" class="btn btn-primary btn-lg">Stämpla in</a>
 				</div>
 				<div class="col-lg-2 col-xs-6 col-md-2">
 					<div class="well">
@@ -29,6 +32,9 @@
 					<a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
 				</div>
 			</div>
+			<?php
+			//echo $lastcheck->getCheckValue() ? "Du är instämplad!" : "Du är inte instämplad!";
+			?>
 		</div>	
 	</body>
 

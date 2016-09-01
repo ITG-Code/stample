@@ -27,8 +27,9 @@ class Check
     public function checkIn()
     {
         if (!$this->isCheckedIn()) {
+            $checkgroup = $this->getNextCheckGroup();
             $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO `check`(checkgroup, checkvalue, `user`, stamp) VALUES(?,0,?,NOW()) ");
-            $stmt->bind_param('ii', $this->getNextCheckGroup(), $this->user);
+            $stmt->bind_param('ii', $checkgroup, $this->user);
             $stmt->execute();
         }
 
@@ -45,25 +46,26 @@ class Check
 
     private function isCheckedIn()
     {
-        if (isset($this->checkvalue))
+        if (isset($this->checkvalue)) {
             if ($this->checkvalue == 0)
                 return true;
             else
                 return false;
-        else
-            if (!$this->fetchLastSelfByUser())
-                $this->isCheckedIn();
-            else {
-                return false;
-            }
+        } else {
+            return $this->fetchLastSelfByUser();
+        }
+
     }
-    private function getNextCheckGroup(){
+
+    private function getNextCheckGroup()
+    {
         $stmt = Database::getInstance()->getConnection()->prepare("SELECT MAX(checkgroup) as maxgroup from `check`");
         $stmt->execute();
         $res = $stmt->get_result();
         $row = $res->fetch_object();
         return $row->maxgroup++;
     }
+
     /*
      * Hämtar senaste check-raden som finns gjord av nuvarande användare
      */
@@ -76,10 +78,11 @@ class Check
         $stmt->close();
         if ($res->num_rows) {
             $row = $res->fetch_object();
-            $this->id = $row->id;
+            $this->id = $row->id ? $row->id : 0;
             $this->checkgroup = $row->checkgroup;
             $this->checkvalue = $row->checkvalue;
             $this->stamp = $row->stamp;
+            return true;
         } else
             return false;
     }
