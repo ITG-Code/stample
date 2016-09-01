@@ -16,7 +16,7 @@ class Account extends Controller
 
     public function index($args = [])
     {
-        if (!$this->user->loggedIn())
+        if (!$this->user->isLoggedIn())
             Redirect::to("/home");
 
         $this->view('account/index', ['email' => Session::get("email")]);
