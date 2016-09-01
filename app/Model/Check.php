@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by IntelliJ IDEA.
- * User: hannes.kindstrommer
- * Date: 2016-08-30
- * Time: 13:25
- */
+namespace Stample\Model;
 class Check
 {
     public $id;

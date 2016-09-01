@@ -1,5 +1,5 @@
 <?php
-
+namespace Stample\Helpers;
 class Redirect
 {
     public static function to($link)

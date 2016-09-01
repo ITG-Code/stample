@@ -1,4 +1,7 @@
 <?php
+namespace Stample\Controller;
+
+use \Stample\Core\Controller;
 
 class Home extends Controller
 {

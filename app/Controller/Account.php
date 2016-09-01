@@ -1,8 +1,14 @@
 <?php
+namespace Stample\Controller;
+
+use \Stample\Core\Controller;
+use \Stample\Helpers\Redirect;
+use \Stample\Helpers\Session;
 
 class Account extends Controller
 {
     private $user;
+
     public function __construct()
     {
         $this->user = $this->model('User');
