@@ -16,7 +16,7 @@ class App
       unset($url[0]);
     }
     $this->controller = "\\Stample\\Controller\\" . ucfirst($this->controller);
-    $this->controller = new $this->controller;
+    $this->controller = new $this->controller();
 
     if(isset($url[1])) {
       if(method_exists($this->controller, $url[1])) {

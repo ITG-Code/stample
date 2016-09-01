@@ -2,11 +2,24 @@
 namespace Stample\Core;
 class Controller
 {
+  private $twigloader;
+  private $twig;
+
+  public function __construct()
+  {
+    $this->twigloader = new \Twig_Loader_Filesystem("../app/view");
+    $this->twig = new \Twig_Environment($this->twigloader, [
+        'cache' => "../twigcache/",
+        'debug' => true,
+        'auto_reload' => true,
+        'autoescape' => true,
+
+    ]);
+  }
 
   public function view($view, $data)
   {
-    // $data passed into method is now available in this view
-    require_once '../app/View/' . $view . '.php';
+    echo $this->twig->render($view . ".php", $data);
   }
 
 

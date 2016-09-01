@@ -11,6 +11,7 @@ class Account extends Controller
 
   public function __construct()
   {
+    parent::__construct();
     $this->user = $this->model('User');
     $this->user->prepare();
   }

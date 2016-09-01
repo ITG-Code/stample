@@ -32,9 +32,8 @@ $lastcheck = $data['lastcheck'];
       <a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
     </div>
   </div>
-  <?php
-  //echo $lastcheck->getCheckValue() ? "Du är instämplad!" : "Du är inte instämplad!";
-  ?>
+
+  lastcheck->getCheckValue() ? "Du är instämplad!" : "Du är inte instämplad!";
 </div>
 </body>
 
