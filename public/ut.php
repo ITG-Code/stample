@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-				<a href="#" class="btn btn-primary btn-lg" id="">Stämpla ut</a>
+				<a href="#" class="btn btn-primary btn-lg stempl"">Stämpla ut</a>
 			</div>
 			<div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
 				<a href="#" class="btn btn-danger btn-lg">Logga ut</a>
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 			<div class="hidden-lg hidden-md col-sm-12 col-xs-12">
-				<a href="#" class="btn btn-danger btn-lg">Logga ut</a>
+				<a href="#" class="btn btn-danger btn-lg stempl">Logga ut</a>
 			</div>
 
 		</div>
