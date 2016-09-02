@@ -16,9 +16,10 @@ class Controller
         'cache' => "../twigcache/",
         'debug' => true,
         'auto_reload' => true,
-        'autoescape' => true,
+        'autoescape' => false,
 
     ]);
+    $this->twig->addExtension(new \Twig_Extension_Debug());
   }
 
   public function view($view, $data)

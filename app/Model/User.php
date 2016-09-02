@@ -147,7 +147,15 @@ class User
     if(!isset($this->lastCheck)) {
       $this->lastCheck = new \Stample\Model\Check($this->id);
     }
+    $this->lastCheck->fetchLastSelfByUser();
     $this->lastCheck->checkIn();
+  }
+  public function checkout(){
+    if(!isset($this->lastCheck)) {
+      $this->lastCheck = new \Stample\Model\Check($this->id);
+    }
+    $this->lastCheck->fetchLastSelfByUser();
+    $this->lastCheck->checkout();
   }
 
   public function getLastCheck()

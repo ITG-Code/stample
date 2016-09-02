@@ -44,4 +44,8 @@ class Account extends Controller
     $this->user->checkIn();
     Redirect::to("/account/home");
   }
+  public function checkout(){
+    $this->user->checkout();
+    Redirect::to("/account/home");
+  }
 }

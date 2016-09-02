@@ -21,9 +21,8 @@ class Check
       $this->checkvalue = $other['checkvalue'];
       $this->stamp = $other['stamp'];
     }
+    debug_backtrace();
   }
-
-
   public function checkIn()
   {
     if(!$this->isCheckedIn()) {
@@ -38,21 +37,29 @@ class Check
   public function checkout()
   {
     if($this->isCheckedIn()) {
+
+      if(!is_int($this->checkgroup)){
+        $this->fetchLastSelfByUser();
+      }
       $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO `check`(checkgroup, checkvalue, `user`, stamp) VALUES(?,1,?,NOW()) ");
       $stmt->bind_param('ii', $this->checkgroup, $this->user);
-      $stmt->execute();
+      $retval = $stmt->execute();
+      $stmt->close();
+      return $retval;
     }
   }
 
   private function isCheckedIn()
   {
+
     if(isset($this->checkvalue)) {
       if($this->checkvalue == 0)
         return true;
       else
         return false;
     } else {
-      return $this->fetchLastSelfByUser();
+      $this->fetchLastSelfByUser();
+      return !boolval($this->checkvalue);
     }
 
   }
@@ -63,13 +70,13 @@ class Check
     $stmt->execute();
     $res = $stmt->get_result();
     $row = $res->fetch_object();
-    return $row->maxgroup++;
+    return $row->maxgroup+1;
   }
 
   /*
    * Hämtar senaste check-raden som finns gjord av nuvarande användare
    */
-  private function fetchLastSelfByUser()
+  public function fetchLastSelfByUser()
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM `check` WHERE `user` = ? ORDER BY id DESC LIMIT 1");
     $stmt->bind_param('i', $this->user);

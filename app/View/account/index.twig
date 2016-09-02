@@ -1,7 +1,7 @@
 {% extends 'main.twig' %}
 
 {% block body %}
-<div class="jumbotron" onload="startTid()">
+<div class="jumbotron" onload="startTid();">
   <div class="container">
     <h2>Namn</h2>
   </div>
@@ -9,7 +9,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-      {% if user.lastcheck.checkvalue == 1 %}
+      {% if user.lastCheck.checkvalue == 1 %}
           <a href="/public/account/checkin" class="btn btn-primary btn-lg">Stämpla in</a>
       {% else %}
         <a href="/public/account/checkout" class="btn btn-primary btn-lg">Stämpla ut</a>
@@ -22,10 +22,10 @@
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="well">
         <p>
-          {% if user.lastcheck.checkvalue == 0 %}
-            Du stämplade in: {{ user.lastcheck.stamp }}
+          {% if user.lastCheck.checkvalue == 0 %}
+            Du stämplade in: {{ user.lastCheck.stamp }}
           {% else %}
-            Du stämplade ut: {{ user.lastcheck.stamp }}
+            Du stämplade ut: {{ user.lastCheck.stamp }}
           {% endif %}
         </p>
       </div>
