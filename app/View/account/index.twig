@@ -1,7 +1,7 @@
 {% extends 'main.twig' %}
 
 {% block body %}
-<div class="jumbotron" onload="startTid();">
+<div class="jumbotron">
   <div class="container">
     <h2>Namn</h2>
   </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
       <div class="well">
-        <p id="txt"></p>
+        <p id="txt" onload="startTid()"></p>
       </div>
     </div>
     <div class="hidden-lg hidden-md col-sm-12 col-xs-12">
