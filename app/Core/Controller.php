@@ -2,17 +2,35 @@
 namespace Stample\Core;
 class Controller
 {
+  private $twigloader;
+  private $twig;
+  protected $user;
 
-    public function view($view, $data)
-    {
-        // $data passed into method is now available in this view
-        require_once '../app/View/' . $view . '.php';
-    }
+  public function __construct()
+  {
+    $this->user = $this->model('User');
+    $this->user->prepare();
+
+    $this->twigloader = new \Twig_Loader_Filesystem("../app/view");
+    $this->twig = new \Twig_Environment($this->twigloader, [
+        'cache' => "../twigcache/",
+        'debug' => true,
+        'auto_reload' => true,
+        'autoescape' => false,
+
+    ]);
+    $this->twig->addExtension(new \Twig_Extension_Debug());
+  }
+
+  public function view($view, $data)
+  {
+    echo $this->twig->render($view . ".twig", $data);
+  }
 
 
-    public static function model($model)
-    {
-        $model = '\Stample\Model\\' . $model;
-        return new $model();
-    }
+  public static function model($model)
+  {
+    $model = '\Stample\Model\\' . $model;
+    return new $model();
+  }
 }

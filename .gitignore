@@ -2,3 +2,4 @@
 .idea/**
 ~*
 DatabaseConfig.php
+twigcache/**

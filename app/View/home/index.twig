@@ -1,0 +1,25 @@
+{% extends 'main.twig' %}
+{% block title %} Logga in {% endblock %}
+{% block body %}
+<div class="jumbotron">
+  <div class="container">
+    <h2>Stample</h2>
+  </div>
+</div>
+<div class="container">
+  <form method="post" class="form-horizontal" action="/public/account/login">
+    <fieldset>
+      <div class="form-group">
+        <input class="form-control input-lg" type="email" name="login-email"
+               placeholder="Email ex.stefan.folkesson@it-gymnasiet.se">
+      </div>
+      <div class="form-group">
+        <input class="form-control input-lg" type="password" name="login-password" placeholder="Lösenord">
+      </div>
+      <div class="form-group">
+        <input class="btn btn-primary btn-rasied" value="Logga in" type="submit">
+      </div>
+    </fieldset>
+  </form>
+</div>
+{% endblock %}
