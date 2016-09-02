@@ -21,7 +21,6 @@ class Check
       $this->checkvalue = $other['checkvalue'];
       $this->stamp = $other['stamp'];
     }
-    debug_backtrace();
   }
   public function checkIn()
   {

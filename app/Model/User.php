@@ -6,11 +6,11 @@ use \Stample\Helpers\Session;
 
 class User
 {
-  public $id;
-  public $email;
+  private $id;
+  private $email;
   private $password;
-  public $fname;
-  public $sname;
+  private $fname;
+  private $sname;
   private $lastCheck;
 
   public function prepare()
