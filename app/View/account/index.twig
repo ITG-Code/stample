@@ -1,0 +1,44 @@
+{% extends 'main.twig' %}
+
+{% block body %}
+<div class="jumbotron" onload="startTid()">
+  <div class="container">
+    <h2>Namn</h2>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+      {% if user.lastcheck.checkvalue == 1 %}
+          <a href="/public/account/checkin" class="btn btn-primary btn-lg">Stämpla in</a>
+      {% else %}
+        <a href="/public/account/checkout" class="btn btn-primary btn-lg">Stämpla ut</a>
+      {% endif %}
+
+    </div>
+    <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+      <a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+      <div class="well">
+        <p>
+          {% if user.lastcheck.checkvalue == 0 %}
+            Du stämplade in: {{ user.lastcheck.stamp }}
+          {% else %}
+            Du stämplade ut: {{ user.lastcheck.stamp }}
+          {% endif %}
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+      <div class="well">
+        <p id="txt"></p>
+      </div>
+    </div>
+    <div class="hidden-lg hidden-md col-sm-12 col-xs-12">
+      <a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

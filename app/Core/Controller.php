@@ -23,7 +23,7 @@ class Controller
 
   public function view($view, $data)
   {
-    echo $this->twig->render($view . ".php", $data);
+    echo $this->twig->render($view . ".twig", $data);
   }
 
 
