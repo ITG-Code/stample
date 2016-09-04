@@ -20,4 +20,4 @@ Nästa Deadline är imorn (fredag) då vi ska lämna in projektplannen och grupp
 ## 2016-09-02
 * Det har gått bra för Pontus, han har dock haft problem elementpositionering i HTMLen vilken han tänkte lösa idag med egen CSS fil. Pågrund av ändring i projektplanen så känner Pontus att han är i en halv dag före projektplaneringen. Pontus känner att han är 70% klar med det han jobar med vilket har en deadline vid nästkommande måndags slut.
 * Det går bra för Emil. Han gjorde klart chefens tabell i SQL igår. Han jobbar numera på hur man gör massmatte i SQL då vi ska räkna ut tiden mellan två datum/tider flera gånger i samma SQL-fråga. Emil känner att han är i fas endligt den nya tidsplanen.
-* Hannes känner sig i fas
+* Hannes känner sig i fas och har som mål att bli klar med loginfunktionen idag för att sedan börja jobba på incheckning och utcheckning.
