@@ -3,3 +3,4 @@
 ~*
 DatabaseConfig.php
 twigcache/**
+*.dia.autosave
