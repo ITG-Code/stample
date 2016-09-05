@@ -6,8 +6,8 @@ namespace Stample\Core;
  */
 class DatabaseConfig
 {
-    protected $_host = "HOSTt";
-    protected $_username = "USERNAME";
-    protected $_password = "PASSWORd";
-    protected $_database = "DATABASE";
+  protected $_host = "HOSTt";
+  protected $_username = "USERNAME";
+  protected $_password = "PASSWORd";
+  protected $_database = "DATABASE";
 }
