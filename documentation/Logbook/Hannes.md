@@ -39,3 +39,6 @@ Rollerna tycker jag är bra fördelade då Pontus HTML ofta är kommit så lång
 
 ### T4
 Första veckan på T4 har varit kul, engagerande och långtråkig. Långtråkig pågrund av att jag vill bara grotta ner mig i kod istället för att hålla på och ha genomgångar om en massa annat. Jag antar att jag behöver lära mig hur viktigt det är att dokumentera och att jag blir bra på det tillslut så jag blir effektiv i den aspekten. Jag tyckte det var intressant när Combitech kom även fast det kändes som att Per sidetrackade en del.
+
+### Loggbok
+Idag har vi spenderat mycket tid utanför projektet vilket har lett till att vi inte haft lika mycket tid till att lägga på projektet. Men med den tid vi fått har jag och Emil med lite ideér från Stefan plannerat fram en struktur för arbetshistogramen som jag har svårt beskriva eller få ner på papper men jag tror jag har lite pekare i kodform som kan påminna mig om hur det skulle vara imorgon.
