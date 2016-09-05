@@ -29,12 +29,10 @@ class Account extends Controller
       Redirect::to('/account/home');
     else
       Redirect::to('/home');
-
   }
 
   public function logout()
   {
-
     $this->user->logout();
     Redirect::to("/home");
   }

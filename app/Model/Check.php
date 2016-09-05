@@ -22,6 +22,7 @@ class Check
       $this->stamp = $other['stamp'];
     }
   }
+
   public function checkIn()
   {
     if(!$this->isCheckedIn()) {
@@ -35,32 +36,26 @@ class Check
 
   public function checkout()
   {
-    if($this->isCheckedIn()) {
-
-      if(!is_int($this->checkgroup)){
-        $this->fetchLastSelfByUser();
-      }
-      $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO `check`(checkgroup, checkvalue, `user`, stamp) VALUES(?,1,?,NOW()) ");
-      $stmt->bind_param('ii', $this->checkgroup, $this->user);
-      $retval = $stmt->execute();
-      $stmt->close();
-      return $retval;
+    if(!$this->isCheckedIn()) {
+      return false;
     }
+    if(!is_int($this->checkgroup)) {
+      $this->fetchLastSelfByUser();
+    }
+    $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO `check`(checkgroup, checkvalue, `user`, stamp) VALUES(?,1,?,NOW()) ");
+    $stmt->bind_param('ii', $this->checkgroup, $this->user);
+    $retval = $stmt->execute();
+    $stmt->close();
+    return $retval;
+
   }
 
   private function isCheckedIn()
   {
-
-    if(isset($this->checkvalue)) {
-      if($this->checkvalue == 0)
-        return true;
-      else
-        return false;
-    } else {
+    if(!isset($this->checkvalue)) {
       $this->fetchLastSelfByUser();
-      return !boolval($this->checkvalue);
     }
-
+    return isset($this->checkvalue) ? !boolval($this->checkvalue) : false;
   }
 
   private function getNextCheckGroup()
@@ -69,7 +64,7 @@ class Check
     $stmt->execute();
     $res = $stmt->get_result();
     $row = $res->fetch_object();
-    return $row->maxgroup+1;
+    return $row->maxgroup + 1;
   }
 
   /*
@@ -141,7 +136,8 @@ class Check
     return $this->stamp;
   }
 
-  public function getViewModel(){
+  public function getViewModel()
+  {
     return new \Stample\ViewModel\Check($this->id, $this->checkgroup, $this->checkvalue, $this->user, $this->stamp);
   }
 

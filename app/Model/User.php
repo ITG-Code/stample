@@ -155,7 +155,7 @@ class User
       $this->lastCheck = new \Stample\Model\Check($this->id);
     }
     $this->lastCheck->fetchLastSelfByUser();
-    $this->lastCheck->checkout();
+    return $this->lastCheck->checkout();
   }
 
   public function getLastCheck()
