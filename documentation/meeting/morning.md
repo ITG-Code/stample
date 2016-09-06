@@ -24,6 +24,9 @@ Nästa Deadline är imorn (fredag) då vi ska lämna in projektplannen och grupp
 
 ## 2016-09-05
 Vi blev klara fram till deadlinen som vi satt för fredagen vecka 35. Då vi skulle vara klara med login system, inlämningen av gruppkontrakt och projektplanen.
-Pontus ligger i fas, på grund av störningar under dagen så kanske pontus kommer hamna efter minimalt. Lite css justeringar för stämpla ut sidan. 
-Hannes ligger ca två dagar före deadline, men eftersom Emil är borta en stund under onsdagen så kanske han falla efter lite men fortfarande vara före tidsplanen. Ska struktuera upp datahanteringen för adminpanelen. 
-Emil ligger i fas och blev färdig med det SQL uttryck han skulle fixa tills på fredagen, ska nu börja med att visa data via SQL uttryck. 
+Pontus ligger i fas, på grund av störningar under dagen så kanske pontus kommer hamna efter minimalt. Lite css justeringar för stämpla ut sidan.
+Hannes ligger ca två dagar före deadline, men eftersom Emil är borta en stund under onsdagen så kanske han falla efter lite men fortfarande vara före tidsplanen. Ska struktuera upp datahanteringen för adminpanelen.
+Emil ligger i fas och blev färdig med det SQL uttryck han skulle fixa tills på fredagen, ska nu börja med att visa data via SQL uttryck.
+
+## 2016-09-06
+Hannes och Emil diskuterade en lösning kring hur man skulle strukturera dataflödet för histogramet. Pontus insåg att något han inte trodde var fixat var redan fixat. Vi hade inte så mycket tid att jobba igår så vi ligger på samma nivå som när vi började dagen igår mer eller mindre vilket är tråkigt. Vi skulle vilja veta hur många dagar som är plannerade att gå bort till ickeprojekt-aktiviteter så man kan plannera projektet efter det.
