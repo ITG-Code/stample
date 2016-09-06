@@ -12,7 +12,14 @@
 <body onload="startTid()">
 	<div class="jumbotron">
 		<div class="container">
-			<h2>Namn</h2>
+			<div class="row">
+				<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+					<a href="" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-left"></span>Tillbaka</a>
+				</div>
+				<div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
+					<h2>Namn</h2>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="container">
