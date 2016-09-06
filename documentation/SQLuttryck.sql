@@ -39,7 +39,7 @@ SELECT
 ) AS worked
 
 
-
+$monday = strtotime('last monday', strtotime('tomorrow'));
 
 
 
