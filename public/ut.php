@@ -36,10 +36,9 @@
 			<div class="hidden-lg hidden-md col-sm-12 col-xs-12">
 				<a href="#" class="btn btn-danger btn-lg stempl">Logga ut</a>
 			</div>
-
 		</div>
 	</div>
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs" id="statis">
 		<li class="active"><a href="#vecka" data-toggle="tab">Vecka</a></li>
 		<li><a href="#monad" data-toggle="tab">Månad</a></li>
 	</ul>
