@@ -17,7 +17,7 @@ class Account extends Controller
   {
     if(!$this->user->isLoggedIn())
       Redirect::to("/home");
-
+      $this->user->generateHistogram();
     $this->view('account/index', [
         'user' => $this->user->getViewModel(),
     ]);

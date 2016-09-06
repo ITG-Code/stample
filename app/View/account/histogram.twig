@@ -8,23 +8,31 @@
       <div class="container stati">
         <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            {% for day in user.histogram.weeks  %}
+              <h5>{{ day.user }}</h5>
+            {% endfor %}
             <div class="well">
-              <p>Mån</p>
+              <p>Mån {{ user.histogram.weeks[0].hours }}:{{ user.histogram.weeks[0].minutes }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
             <div class="well">
-              <p>Tis</p>
+              <p>Tis {{ user.histogram.weeks[1].hours }}:{{ user.histogram.weeks[1].minutes }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
             <div class="well">
-              <p>Ons</p>
+              <p>Ons {{ user.histogram.weeks[2].hours }}:{{ user.histogram.weeks[2].minutes }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
             <div class="well">
-              <p>Tor</p>
+              {% if user.histogram.weeks[3].workedTime == 0 or user.histogram.weeks[3].workedTime is null %}
+                <p>Tor 0</p>
+              {% else %}
+                <p>Tor {{ user.histogram.weeks[3].hours }}:{{ user.histogram.weeks[3].minutes }}</p>
+              {% endif %}
+
             </div>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
