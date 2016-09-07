@@ -29,7 +29,7 @@ class Histogram
     $endDate = clone $startDate;
     $endDate->add(new \DateInterval("P1D"));
     $stmt = Database::getInstance()->getConnection()->prepare(
-        "SELECT `user`.`id` as userid,checkvalue, COUNT(`check`.`id`) as rows, SUM(`check`.stamp) as times FROM `user`
+        "SELECT `user`.`id` as userid,checkvalue, COUNT(`check`.`id`) as rows, SUM(UNIX_TIMESTAMP(`check`.stamp)) as times FROM `user`
 LEFT JOIN `check` ON `user`.`id` = `check`.`user`
 WHERE stamp < ? AND `user`.id = ? AND stamp > ?
 GROUP BY `check`.user, `check`.`checkvalue` 
@@ -44,7 +44,7 @@ ORDER BY checkvalue ASC
       $result = $stmt->get_result();
       $row1 = $result->fetch_object();
       $row2 = $result->fetch_object();
-      $this->weeks[] = new HistogramUnit($row1, $row2, $startDate, true);
+      $this->weeks[] = new HistogramUnit($row1, $row2, $startDate, $endDate, true);
       $startDate->add(new \DateInterval("P1D"));
       $endDate->add(new \DateInterval("P1D"));
     }
@@ -58,7 +58,7 @@ ORDER BY checkvalue ASC
     $endDate = clone $currentYear;
     $endDate->add(new \DateInterval("P1M"));
     $stmt = Database::getInstance()->getConnection()->prepare(
-        "SELECT `user`.`id` as userid,checkvalue, COUNT(`check`.`id`) as rows, SUM(`check`.stamp) as times FROM `user`
+        "SELECT `user`.`id` as userid,checkvalue, COUNT(`check`.`id`) as rows, SUM(UNIX_TIMESTAMP(`check`.stamp)) as times FROM `user`
 LEFT JOIN `check` ON `user`.`id` = `check`.`user`
 WHERE stamp < ? AND `user`.id = ? AND stamp > ?
 GROUP BY `check`.user, `check`.`checkvalue` 
@@ -73,7 +73,7 @@ ORDER BY checkvalue ASC
       $result = $stmt->get_result();
       $row1 = $result->fetch_object();
       $row2 = $result->fetch_object();
-      $this->months[] = new HistogramUnit($row1, $row2, $currentYear, false);
+      $this->months[] = new HistogramUnit($row1, $row2, $currentYear, $endDate, false);
       $currentYear->add(new \DateInterval("P1M"));
       $endDate->add(new \DateInterval("P1M"));
     }

@@ -16,6 +16,7 @@ class HistogramUnit
    */
   private $dayOrMonth = false;
   private $workedTime = 0;
+  private $periodEnds;
 
   private $hours = 0;
   private $minutes = 0;
@@ -28,10 +29,18 @@ class HistogramUnit
    * @param $startTime: DateTime
    * @param $dayOrMonth: true if class represents a day false if it's a month
    */
-  public function __construct($checkin, $checkout, $startTime, $dayOrMonth)
+  public function __construct($checkin, $checkout, $startTime, $endTime, $dayOrMonth)
   {
     $this->dayOrMonth = $dayOrMonth;
-    if(!is_null($checkin) && !is_null($checkout)) {
+    if(!is_null($checkin)) {
+
+      $checkin->times = (float)$checkin->times;
+      $checkout->times = (float)$checkout->times;
+      if($endTime->getTimestamp() > (new \DateTime())->getTimestamp()){
+        $this->periodEnds = (new \DateTime())->getTimestamp();
+      }else{
+        $this->periodEnds = $endTime->getTimeStamp();
+      }
       /**
        * If checkin exist but checkout doesn't
        */
@@ -39,6 +48,8 @@ class HistogramUnit
         $checkout = (object)[];
         $checkout->times = (new \DateTime())->getTimestamp();
         $checkout->rows = $checkin->rows;
+
+
       }
       /**
        * If checkin doesn't exist but checkout does
@@ -51,10 +62,14 @@ class HistogramUnit
       }
 
       if($checkin->rows > $checkout->rows) {
-        $checkout->times += (new \DateTime())->getTimestamp();
+        $checkout->times += $this->periodEnds;
+        $checkout->rows++;
+
       }
       if($checkin->rows < $checkout->rows) {
         $checkin->times += $startTime->getTimestamp();
+        $checkin->rows++;
+
       }
       $this->workedTime = $checkout->times - $checkin->times;
       $this->toHumanTime();

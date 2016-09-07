@@ -1,55 +1,30 @@
-<div class="">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#vecka" data-toggle="tab">Vecka</a></li>
-    <li><a href="#monad" data-toggle="tab">Månad</a></li>
-  </ul>
-  <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade active in" id="vecka">
-      <div class="container stati">
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-            {% for day in user.histogram.weeks  %}
-              <h5>{{ day.user }}</h5>
-            {% endfor %}
+<ul class="nav nav-tabs" id="statis">
+  <li class="active"><a href="#vecka" data-toggle="tab">Vecka</a></li>
+  <li><a href="#monad" data-toggle="tab">Månad</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="vecka">
+    <div class="container stati">
+      <div class="row">
+        {% set daynames = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'] %}
+        {% for day in daynames %}
+        {% if loop.index0 < 4 %}
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+        {% else %}
+          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+        {% endif %}
             <div class="well">
-              <p>Mån {{ user.histogram.weeks[0].hours }}:{{ user.histogram.weeks[0].minutes }}</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-            <div class="well">
-              <p>Tis {{ user.histogram.weeks[1].hours }}:{{ user.histogram.weeks[1].minutes }}</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-            <div class="well">
-              <p>Ons {{ user.histogram.weeks[2].hours }}:{{ user.histogram.weeks[2].minutes }}</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
-            <div class="well">
-              {% if user.histogram.weeks[3].workedTime == 0 or user.histogram.weeks[3].workedTime is null %}
-                <p>Tor 0</p>
+              {% if user.histogram.weeks[loop.index0] is defined %}
+                <p>{{ day }} {{ user.histogram.weeks[loop.index0].hours }}
+                  :{{ user.histogram.weeks[loop.index0].minutes }}
+                  h</p>
               {% else %}
-                <p>Tor {{ user.histogram.weeks[3].hours }}:{{ user.histogram.weeks[3].minutes }}</p>
+                <p>{{ day }} 00:00h</p>
               {% endif %}
+            </div>
+          </div>
+          {% endfor %}
 
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-            <div class="well">
-              <p>Fre</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
-            <div class="well">
-              <p>Lör</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-            <div class="well">
-              <p class="text-danger">Sön</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -122,4 +97,3 @@
       </div>
     </div>
   </div>
-</div>
