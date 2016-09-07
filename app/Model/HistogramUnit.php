@@ -54,7 +54,7 @@ class HistogramUnit
         $checkout->times += (new \DateTime())->getTimestamp();
       }
       if($checkin->rows < $checkout->rows) {
-        $checkin->times += $startTime;
+        $checkin->times += $startTime->getTimestamp();
       }
       $this->workedTime = $checkout->times - $checkin->times;
       $this->toHumanTime();
