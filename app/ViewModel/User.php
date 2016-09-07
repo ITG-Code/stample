@@ -11,7 +11,8 @@ class User
   public $sname;
   public $lastCheck;
   public $histogram;
-  public function __construct($id, $email, $fname, $sname, $lastCheck, $histogram)
+  public $admin;
+  public function __construct($id, $email, $fname, $sname, $lastCheck, $histogram, $admin)
   {
     $this->id = $id;
     $this->email = $email;
@@ -19,5 +20,6 @@ class User
     $this->sname = $sname;
     $this->lastCheck = $lastCheck;
     $this->histogram = $histogram;
+    $this->admin = $admin;
   }
 }
