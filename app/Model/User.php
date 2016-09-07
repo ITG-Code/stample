@@ -12,6 +12,7 @@ class User
   private $fname;
   private $sname;
   private $lastCheck;
+  private $histogram;
 
   public function prepare()
   {
@@ -163,6 +164,9 @@ class User
     return $this->lastCheck;
   }
   public function getViewModel(){
-    return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, $this->lastCheck->getViewModel());
+    return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, $this->lastCheck->getViewModel(), $this->histogram->getViewModel());
+  }
+  public function generateHistogram(){
+    $this->histogram = new Histogram($this->id);
   }
 }

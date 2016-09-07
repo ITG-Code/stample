@@ -42,3 +42,11 @@ Första veckan på T4 har varit kul, engagerande och långtråkig. Långtråkig 
 
 ### Loggbok
 Idag har vi spenderat mycket tid utanför projektet vilket har lett till att vi inte haft lika mycket tid till att lägga på projektet. Men med den tid vi fått har jag och Emil med lite ideér från Stefan plannerat fram en struktur för arbetshistogramen som jag har svårt beskriva eller få ner på papper men jag tror jag har lite pekare i kodform som kan påminna mig om hur det skulle vara imorgon.
+
+### Two Stars and a Wish
+* Jag tycker det är bra hur vi har fördelat arbetet
+* Jag tycker det är bra hur jag vi använder oss av MVC strukturen när det kommer till PHPkoden då det blir väldigt mycket enklare att expandera med nya funktioner.
+* Jag tycker att vi borde dela varandras IP så att vi kan se varandras versioner på våra egna datorer.
+
+## Tisdag 2016-09-06
+Nu hämtas histogramdata korrekt och blir sedan behandad, ibland inte lika rätt som andra gånger men vi får ut data till HTMLen vilket är bra. Jag hade problemet att SQL inte gillade vissa format av datum... Jag hade provat timestamp som int vilket inte funkade vilket jag insåg efter lite för lång tid. Det löste jag genom att ändra formatet till "Y-m-d H:i:s" där m står för månad och i står för timme. Pontus verkar vara klar med allt sitt för projektet just nu så jag satte han på att lära sig twig så att iallafall jag kan jobba lättare med honom samt att han kan sköta utskrivningen av variabler osv vilket jag har gjort änsålänge. När jag skulle skriva ut data i histogramsidan insåg jag att det kommer bli EXTREMT mycket repetitiv kod så jag funderar på om man ska ha dagnamnen i VyModellerna också. Detta skulle resultera till en början av flerspråksstöd. Idag fick vi nästan hela dagen att jobba på projektet vilket jag tyckte var skönt. Den tid som vi inte fick till att arbeta använde Stefan till att lära oss om koddokumentation osv. där det fanns en del jag höll med om och en del jag inte höll med om men jag såg hans poäng.

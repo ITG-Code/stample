@@ -8,4 +8,4 @@ GROUP BY `check`.user, `check`.`checkvalue`
 SELECT `user`.`id` as userid,checkvalue, COUNT(`check`.`id`) as rows, SUM(`check`.stamp) as times FROM `user`
 LEFT JOIN `check` ON `user`.`id` = `check`.`user`
 WHERE stamp < NOW() AND `user`.id = 11 AND stamp > "2016-08-02 13:11:57"
-GROUP BY `check`.user, `check`.`checkvalue`
+GROUP BY `check`.user, `check`.`checkvalue` ORDER BY checkvalue ASC
