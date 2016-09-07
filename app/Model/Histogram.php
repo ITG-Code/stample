@@ -68,7 +68,7 @@ ORDER BY checkvalue ASC
     while($currentYear < new \DateTime()) {
       $valuedStartDate = $currentYear->format("Y-m-d H:i:s");
       $valuedEndDate = $endDate->format("Y-m-d H:i:s");
-      $stmt->bind_param('iii', $valuedEndDate, $this->user, $valuedStartDate);
+      $stmt->bind_param('sis', $valuedEndDate, $this->user, $valuedStartDate);
       $stmt->execute();
       $result = $stmt->get_result();
       $row1 = $result->fetch_object();

@@ -31,68 +31,19 @@
     <div class="tab-pane fade" id="monad">
       <div class="container stati">
         <div class="row">
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Jan</p>
+          {% set monthnames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'] %}
+          {% for month in monthnames %}
+            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+              <div class="well">
+                {% if user.histogram.months[loop.index0] is defined %}
+                  <p>{{ month }} {{ user.histogram.months[loop.index0].hours }}:{{ user.histogram.months[loop.index0].minutes }}h</p>
+                {% else %}
+                  <p>{{ month }} 00:00h</p>
+                {% endif %}
+                {{ dump(user.histogram.months[loop.index0]) }}
+              </div>
             </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Feb</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Mar</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Apr</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Maj</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Jun</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Jul</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Aug</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Sep</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Okt</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Nov</p>
-            </div>
-          </div>
-          <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
-            <div class="well">
-              <p>Dec</p>
-            </div>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>

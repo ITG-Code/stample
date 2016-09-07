@@ -25,8 +25,9 @@ class HistogramUnit
   /**
    * HistogramUnit constructor.
    * @param $checkin Histogram::getCurrentYear or Histogram::getCurrentWeek
-   * @param $checkout Pair with $checkin
+   * @param $checkout: Pair with $checkin
    * @param $startTime: DateTime
+   * @param $endTime: The time at which the period ends.
    * @param $dayOrMonth: true if class represents a day false if it's a month
    */
   public function __construct($checkin, $checkout, $startTime, $endTime, $dayOrMonth)
