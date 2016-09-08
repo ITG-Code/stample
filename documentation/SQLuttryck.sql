@@ -1,3 +1,11 @@
+/* Påbörjat nytt SQL uttryck */
+SELECT user.id AS userid, user.fname, user.sname, user.email, c.user, c.checkvalue, c.stamp, c.checkgroup
+FROM `user`
+LEFT JOIN `check` AS c
+ON user.id = c.user
+WHERE checkgroup = 4
+
+
 SELECT * FROM `check` WHERE user = 8 ORDER BY stamp DESC LIMIT 1; /* - Tar ut senaste aktiviteten som "user" gjort (checkin eller checkout)  - */
 SELECT * FROM `user` WHERE fname ORDER BY id DESC;
 
