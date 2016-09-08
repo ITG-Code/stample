@@ -14,10 +14,8 @@
         {% else %}
           <a href="/public/account/checkout" class="btn btn-primary btn-lg">Stämpla ut</a>
         {% endif %}
-        {% if user.admin == 1 %}
-          <a href="/public/admin" class="btn btn-primary btn-lg">Adminpanel</a>
-        {% endif %}
       </div>
+
       <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
         <a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
       </div>
@@ -41,6 +39,13 @@
         <a href="/public/account/logout" class="btn btn-danger btn-lg">Logga ut</a>
       </div>
 
+    </div>
+    <div class="row">
+      {% if user.admin == 1 %}
+        <div>
+        </div>
+        <a href="/public/admin" class="btn btn-primary btn-lg">Adminpanel</a>
+      {% endif %}
     </div>
   </div>
   {% include 'account/histogram.twig' %}

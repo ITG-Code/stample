@@ -4,25 +4,16 @@ namespace Stample\Model;
 use Stample\Core\Database;
 
 class Admin {
-	public function getTableData(){
-		$stmt = Database::getInstance()->getConnection()->prepare("
-		SELECT user.id, user.fname, user.sname, user.email, c.checkvalue, c.stamp, c.checkgroup, c.id AS checkid
-		FROM `user`
-		LEFT JOIN `check` AS c
-		ON user.id = c.user
-		WHERE stamp=(select MAX(stamp) FROM `check` WHERE user=user.id)");
 
+	public function getTableData(){
+		$stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM user_status_for_admin");
 		$stmt->execute();
-		$res = $stmt->get_result();
+		$result = $stmt->get_result();
 		$retval = [];
-		while($row = $stmt->fetch_object())
+		while($row = $result->fetch_object())
 		{
 			$retval[] = $row;
 		}
-		
 		return $retval;
-
 	}
-
-
 }

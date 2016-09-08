@@ -8,7 +8,7 @@ class Check
 {
   private $id;
   private $checkgroup;
-  private $checkvalue;
+  private $checkvalue = 1;
   private $user;
   private $stamp;
 

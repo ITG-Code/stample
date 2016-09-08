@@ -1,0 +1,48 @@
+{% extends 'main.twig' %}
+{% block body %}
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+          <a href="/public/account/" class="btn btn-primary btn-lg"><span
+                class="glyphicon glyphicon-chevron-left"></span>Tillbaka</a>
+        </div>
+        <div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
+          <h2>Statistik</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Namn</th>
+        <th>Senaste Aktivitet</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for employee in table %}
+        {% if employee.checkvalue == 0 %}
+          <a href="/public/admin/employee/{{ employee.userid }}">
+            <tr class="success">
+              <td>{{ employee.fname }} {{ employee.sname }}</td>
+              <td>Instämplad: {{ employee.stamp }}</td>
+              <td><span class="glyphicon glyphicon-ok"></span></td>
+            </tr>
+          </a>
+        {% else %}
+          <a href="/public/admin/employee/{{ employee.userid }}">
+            <tr class="danger">
+              <td>{{ employee.fname }} {{ employee.sname }}</td>
+              <td>Utstämplad: {{ employee.stamp }}</td>
+              <td><span class="glyphicon glyphicon-remove"></span></td>
+            </tr>
+          </a>
+        {% endif %}
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

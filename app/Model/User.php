@@ -45,6 +45,9 @@ class User
   {
     return boolval(Session::get("SessionUser")) ? $this->doesIDExist(Session::get('SessionUser')) : false;
   }
+  public function isAdmin(){
+    return boolval($this->admin);
+  }
 
   public function logout()
   {
@@ -68,6 +71,7 @@ class User
     }
     return boolval($hashedPassword) ? $hashedPassword : false;
   }
+
   private function createSelfFromID($id)
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM user WHERE id = ?");
@@ -86,6 +90,7 @@ class User
     }
     return boolval($hashedPassword) ? $hashedPassword : false;
   }
+
   private function createExtendedSelfFromID($id)
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup, checkvalue, stamp, admin FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = ? ORDER BY `check`.id DESC LIMIT 1");
@@ -136,7 +141,9 @@ class User
     $row = $res->fetch_object();
     return boolval($row->idcount);
   }
-  private function getCheckCount(){
+
+  private function getCheckCount()
+  {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT count(*) as rowcount FROM `check` WHERE user = ?");
     $stmt->bind_param('i', $this->id);
     $stmt->execute();
@@ -154,7 +161,9 @@ class User
     $this->lastCheck->fetchLastSelfByUser();
     $this->lastCheck->checkIn();
   }
-  public function checkout(){
+
+  public function checkout()
+  {
     if(!isset($this->lastCheck)) {
       $this->lastCheck = new \Stample\Model\Check($this->id);
     }
@@ -166,10 +175,17 @@ class User
   {
     return $this->lastCheck;
   }
-  public function getViewModel(){
+
+  public function getViewModel()
+  {
+    if(!isset($this->lastCheck)) {
+      return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, new \Stample\ViewModel\Check(0, 0, 1, $this->id, "Ingen historik"), $this->histogram->getViewModel(), $this->admin);
+    }
     return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, $this->lastCheck->getViewModel(), $this->histogram->getViewModel(), $this->admin);
   }
-  public function generateHistogram(){
+
+  public function generateHistogram()
+  {
     $this->histogram = new Histogram($this->id);
   }
 }

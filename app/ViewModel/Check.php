@@ -13,7 +13,7 @@ class Check
 {
   public $id;
   public $checkgroup;
-  public $checkvalue;
+  public $checkvalue = 1;
   public $user;
   public $stamp;
   public function __construct($id, $checkgroup, $checkvalue, $user, $stamp)

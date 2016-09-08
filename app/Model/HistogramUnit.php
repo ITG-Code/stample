@@ -35,6 +35,11 @@ class HistogramUnit
     $this->dayOrMonth = $dayOrMonth;
     if(!is_null($checkin)) {
 
+      if(!is_object($checkout)){
+        $checkout = (object)[];
+        $checkout->times = 0;
+        $checkout->rows = 0;
+      }
       $checkin->times = (float)$checkin->times;
       $checkout->times = (float)$checkout->times;
       if($endTime->getTimestamp() > (new \DateTime())->getTimestamp()){
