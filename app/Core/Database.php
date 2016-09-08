@@ -29,6 +29,7 @@ class Database extends DatabaseConfig
       trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(),
           E_USER_ERROR);
     }
+    $this->_connection->set_charset("UTF8");
   }
 
   // Magic method clone is empty to prevent duplication of connection
