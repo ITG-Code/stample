@@ -125,15 +125,28 @@ class User
 
   public function register()
   {
-    $name = "Kokt";
-    $last = "Korv";
-    $email = "kokt@korv.se";
-    $password = "1234";
+    $email = $_POST['register-email'];
+    $email = trim($email);
+    $password = $_POST['register-password'];
+    $password = trim($password);
+    $passwordConfirm = $_POST['register-password-confirm'];
+    $passwordConfirm = trim($passwordConfirm);
+
+    $fname = $_POST['register-fname'];
+    $fname = trim($fname);
+
+    $sname = $_POST['register-sname'];
+    $sname = trim($sname);
+
+    if($password != $passwordConfirm){
+      return false;
+    }
     $password = password_hash($password, PASSWORD_BCRYPT);
     $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO user(email, password, fname, sname) VALUES(?,?,?,?)");
-    $stmt->bind_param('ssss', $email, $password, $name, $last);
-    $stmt->execute();
+    $stmt->bind_param('ssss', $email, $password, $fname, $sname);
+    $retval = $stmt->execute();
     $stmt->close();
+    return $retval;
   }
 
   private function doesIDExist($id)

@@ -30,6 +30,17 @@ class Account extends Controller
     else
       Redirect::to('/home');
   }
+  public function register(){
+    if($this->user->isLoggedIn()){
+      Redirect::to('/account/home');
+    }
+    if($this->user->register()){
+      Redirect::to('/home');
+    }else{
+      Redirect::to('/home/register');
+    }
+
+  }
 
   public function logout()
   {

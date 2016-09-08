@@ -18,4 +18,10 @@ class Home extends Controller
 
     $this->view('home/index', []);
   }
+  public function register(){
+    if($this->user->isLoggedIn())
+      Redirect::to("/account/home");
+
+    $this->view('home/register', []);
+  }
 }
