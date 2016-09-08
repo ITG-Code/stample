@@ -13,11 +13,11 @@
 	<div class="jumbotron">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
 					<a href="" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-left"></span>Tillbaka</a>
 				</div>
-				<div class="col-lg-10 col-md-8 col-sm-8 col-xs-6">
-					<h2>Namn</h2>
+				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
+					<h2>Lernat Gustafsson</h2>
 				</div>
 			</div>
 		</div>
@@ -25,7 +25,7 @@
 	<div class="container">
 	<div class="list-group">
 		<div class="row list-group-item">
-			<h3 class="list-group-item-heading text-primary">Denna Veckan</h3>
+			<h3 class="list-group-item-heading text-primary text-move">Denna Veckan</h3>
 			<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
 				<div class="well">
 					<p>Mån</p>
@@ -67,7 +67,7 @@
 	<div class="container">
 		<div class="list-group">
 		<div class="row list-group-item">
-		<h3 class="list-group-item-heading text-primary">Detta Arbetsåret</h3>
+		<h3 class="list-group-item-heading text-primary text-move">Detta Arbetsåret</h3>
 			<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
 				<div class="well">
 					<p>Jan</p>
