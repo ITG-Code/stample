@@ -6,6 +6,7 @@ namespace Stample\Controller;
 use Stample\Core\Controller;
 use Stample\Helpers\Redirect;
 use Stample\Model\Admin as AdminModel;
+use Stample\Model\User;
 
 class Admin extends Controller
 {
@@ -22,5 +23,16 @@ class Admin extends Controller
     $this->view("admin/index",[
       "table" => $this->adminModel->getTableData(),
     ]);
+  }
+  public function employee($args = []){
+    if(empty($args)){
+      Redirect::to("/admin");
+    }
+    $employee = new User();
+    $employee->employ($args[0]);
+
+    $this->view("admin/employee", [
+        'employee' => $employee->getViewModel(),
+        ]);
   }
 }

@@ -26,6 +26,11 @@ class User
 
     }
   }
+  public function employ($id){
+    $this->id = $id;
+    $this->createSelfFromID($this->id);
+    $this->generateHistogram();
+  }
 
   public function login()
   {
