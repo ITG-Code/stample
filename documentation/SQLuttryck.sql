@@ -30,6 +30,7 @@ SELECT
     (SELECT SUM(stamp) FROM `check` WHERE checkgroup = 1 AND checkvalue = 0 AND stamp < NOW() )
   -
     (SELECT SUM(stamp) FROM `check` WHERE checkgroup = 1 AND checkvalue = 1 AND stamp < NOW())
+    
 ) AS worked
 
 /*
