@@ -27,6 +27,7 @@ class Admin extends Controller
 
     $this->view("admin/index",[
       'table' => $this->adminModel->getTableData(),
+      'shifts' => $this->adminModel->getShiftsFromDepartment(),
     ]);
   }
   public function employee($args = []){
@@ -40,11 +41,5 @@ class Admin extends Controller
         'employee' => $employee->getViewModel(),
         'shifts' => $this->adminModel->getShiftsFromUserID($employee->getID()),
         ]);
-  }
-  public function shifts(){
-
-    $this->view('admin/shifts',[
-      'shifts' => $this->adminModel->getShifts(),
-    ]);
   }
 }

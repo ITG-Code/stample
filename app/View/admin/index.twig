@@ -4,7 +4,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-          <a href="/public/account" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-left"></span>Tillbaka</a>
+          <a href="/public/account" class="btn btn-primary btn-lg"><span
+                class="glyphicon glyphicon-chevron-left"></span>Tillbaka</a>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
           <h2>Statistik</h2>
@@ -40,6 +41,28 @@
             </tr>
           </a>
         {% endif %}
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Namn</th>
+        <th>Instämpling</th>
+        <th>Utstämpling</th>
+        <th>Antal Timmar</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for shift in shifts %}
+        <tr>
+          <td>{{ shift.fname }} {{ shift.sname }}</td>
+          <td>{{ shift.startTime }}</td>
+          <td>{{ shift.endTime }}</td>
+          <td>{{ shift.hours }}:{{ shift.minutes }}h</td>
+        </tr>
       {% endfor %}
       </tbody>
     </table>
