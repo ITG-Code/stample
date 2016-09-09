@@ -35,4 +35,19 @@ class Admin extends Controller
         'employee' => $employee->getViewModel(),
         ]);
   }
+  public function departmentshifts(){
+
+    $this->view('admin/shifts',[
+      'shifts' => $this->adminModel->getShifts(),
+    ]);
+
+  }
+  public function shifts($args){
+    if(!$this->user->doesIDExist($args[0])){
+      Redirect::to('/admin');
+    }
+    $this->view('admin/shifts',[
+      'shifts' => $this->adminModel->getShifts($args[0]),
+    ]);
+  }
 }
