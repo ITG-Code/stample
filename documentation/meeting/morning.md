@@ -39,3 +39,8 @@ Imorgon kommer Pontus och Emil kolla genom den grafiska designen på hemsidan.
 
 ## 2016-09-08
 Emil var frånvarande under början av morgonmötet igår då han var hos tandläkaren men fyllde senare in oss på vad han skulle göra, idag ska Emil och Pontus jobba med designen av sidan, då de ska gå igenom sidan och kolla om något behöver förtydligas, läggas till eller diskuteras med gruppen. Hannes tänker börja binda ihop resterande delar. Vi kommer även att ha besök av ännu ett företag vid 10:00 idag så lite tid kommer att gå bort där. Förutom det så tänker vi jobba på enligt tidsplanen så vi blir klara tills deadlinen, för tillfället ligger vi alla i fas, då Emil och Pontus känner att de ligger lite före. Deadlinen tills på fredag är klar en dag tidigare än den borde. Under gårdagen reflekterade vi över tidsplanen.
+
+## 2016-09-08
+Emil tänker jobba med ett SQL uttryck med en persons namn och efternamn, samt att slänga ihop alla timestamps som ligger i samma checkgroup på samma rad i en tabell så det ser ut något som |Emil|Gunnarsson|2016-09-8:30|2016-09-15:30|, för att visa när folk gick av och på skift. 
+Pontus ska göra den grafiska sidan för detta och Hannes kommer att göra PHP delen bakom allt detta. Detta förväntas vara klart idag. Om detta är klart idag så följer vi tidsplanen.
+Igår blev Emil och Pontus klara med att gå igenom och fixa / justera sidan då vi ändrade titlar och texter. Hannes sydde ihop allt som fanns på frontend enda bak till databasen. Vår ursprungliga plan var att bli klara med funktionalliteten tills idag vilket vi blev färdiga med igår, därav lägger vi till lite extra funktioner idag. 
