@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/public/css/{{ skin }}.css">
+  <link rel="stylesheet" type="text/css" id="theme" href="/public/css/{{ skin }}.css">
   <link rel="stylesheet" type="text/css" href="/public/css/stil.css">
 
   <title>{{ block('title') }}</title>
 </head>
 <body>
 {% block body %}{% endblock %}
+<ul class="nav nav-tabs navbar-fixed-bottom">
+  <li><a href="javascript:changeCSS()" class="">Byt Tema</a></li>
+</ul>
 <footer>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
