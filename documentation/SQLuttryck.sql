@@ -1,14 +1,23 @@
-SELECT * FROM `check` WHERE user = 8 ORDER BY stamp DESC LIMIT 1; /* - Tar ut senaste aktiviteten som "user" gjort (checkin eller checkout)  - */
+
+/* Tar ut alla checkins / checkouts gruppvis baserat på "checkgroup" och visar upp det i en tabell som |userid|namn|efternamn|checkin|checkout| */
+SELECT checkins.user, user.fname, user.sname, checkins.stamp as checkin_time, checkouts.stamp as checkout_time FROM 
+(SELECT * FROM `check` WHERE checkvalue = 1) as checkins
+INNER JOIN 
+(SELECT * FROM `check` WHERE checkvalue = 0) as checkouts 
+ON checkins.checkgroup=checkouts.checkgroup LEFT JOIN `user` ON checkins.user = user.id ORDER BY checkin_time ASC
+
+/* - Tar ut senaste aktiviteten som "user" gjort (checkin eller checkout)  - */
+SELECT * FROM `check` WHERE user = 8 ORDER BY stamp DESC LIMIT 1; 
 SELECT * FROM `user` WHERE fname ORDER BY id DESC;
 
-/* VIEW FÖR ADMIN */
+/* View för admins */
 SELECT user.id ,user.fname, user.sname, user.email, `check`.user, `check`.checkvalue, `check`.stamp, `check`.checkgroup
 FROM `user`
 LEFT JOIN `check`
 ON user.id = `check`.user
 WHERE stamp=(select max(stamp) from `check` where user=user.id)
 
- /* Uppdaterad view som innhehåller check id*/
+ /* Uppdaterad view som innhehåller check id för admins*/
 SELECT user.id, user.fname, user.sname, user.email, c.checkvalue, c.stamp, c.checkgroup, c.id AS checkid
 FROM `user`
 LEFT JOIN `check` AS c
@@ -17,18 +26,7 @@ WHERE stamp=(select MAX(stamp) FROM `check` WHERE user=user.id)
 
 
 
-/* MATTE TEST 1 */
-SELECT 
-    (checkdata.checkvalue - userdata.id) AS subtracted_value
-FROM 
-	`check` AS checkdata 
-JOIN 
-    user AS userdata ON checkdata.id = userdata.id
 
-/* MATTE TEST 2 */
-SELECT stamp AS work_of_the_day
-FROM `check` AS calc
-WHERE (id = 2) - (id = 1)
 
 /* Tid som personer arbetat */
 SELECT
@@ -38,8 +36,6 @@ SELECT
     (SELECT SUM(stamp) FROM `check` WHERE checkgroup = 1 AND checkvalue = 1 AND stamp < NOW())
 ) AS worked
 
-
-$monday = strtotime('last monday', strtotime('tomorrow'));
 
 
 
@@ -85,7 +81,40 @@ FROM `user`
 LEFT JOIN `check` 
 ON user.id = `check`.user
 */
+SELECT
+(
+   (SELECT `check`.stamp FROM `check` WHERE checkgroup = 4 AND checkvalue = 1)
+   AND
+   (SELECT `check`.stamp FROM `check` WHERE checkgroup = 4 AND checkvalue = 1)
+)
 
+SELECT 
+    (checkdata.checkvalue - userdata.id) AS subtracted_value
+FROM 
+  `check` AS checkdata 
+JOIN 
+    user AS userdata ON checkdata.id = userdata.id
+
+SELECT stamp AS work_of_the_day
+FROM `check` AS calc
+WHERE (id = 2) - (id = 1)
+
+SELECT user.id AS userid, user.fname, user.sname, user.email, c.user, c.checkvalue, c.stamp, c.checkgroup
+FROM `user`
+LEFT JOIN `check` AS c
+ON user.id = c.user
+WHERE stamp = 
+(
+    (SELECT stamp FROM `check` WHERE checkgroup = 4 AND checkvalue = 1)
+    AND
+    (SELECT stamp FROM `check` WHERE checkgroup = 4 AND checkvalue = 0)
+)
+
+SELECT user.id AS userid, user.fname, user.sname, user.email, c.user, c.checkvalue, c.stamp, c.checkgroup
+FROM `user`
+LEFT JOIN `check` AS c
+ON user.id = c.user
+WHERE checkgroup = 4
 
 SELECT user.id, user.fname, user.sname, user.email, `check`.checkvalue, `check`.stamp
 FROM `user` 
