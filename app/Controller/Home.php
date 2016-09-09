@@ -3,6 +3,7 @@ namespace Stample\Controller;
 
 use \Stample\Core\Controller;
 use Stample\Helpers\Redirect;
+use Stample\Helpers\Session;
 
 class Home extends Controller
 {
@@ -23,5 +24,12 @@ class Home extends Controller
       Redirect::to("/account/home");
 
     $this->view('home/register', []);
+  }
+  public function setSkin($args = []){
+    if($args[0] == "darkly"){
+      Session::set('skin', true);
+    }else{
+      Session::set('skin', false);
+    }
   }
 }

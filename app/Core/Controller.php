@@ -1,5 +1,7 @@
 <?php
 namespace Stample\Core;
+use Stample\Helpers\Session;
+
 class Controller
 {
   private $twigloader;
@@ -24,6 +26,7 @@ class Controller
 
   public function view($view, $data)
   {
+    $data['skin'] = Session::exists('skin') ? Session::get('skin') : 'flatly' ;
     echo $this->twig->render($view . ".twig", $data);
   }
 

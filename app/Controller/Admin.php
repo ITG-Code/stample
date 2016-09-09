@@ -46,6 +46,5 @@ class Admin extends Controller
     $this->view('admin/shifts',[
       'shifts' => $this->adminModel->getShifts(),
     ]);
-
   }
 }
