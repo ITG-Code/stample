@@ -24,10 +24,6 @@ LEFT JOIN `check` AS c
 ON user.id = c.user
 WHERE stamp=(select MAX(stamp) FROM `check` WHERE user=user.id)
 
-
-
-
-
 /* Tid som personer arbetat */
 SELECT
 (
@@ -35,35 +31,6 @@ SELECT
   -
     (SELECT SUM(stamp) FROM `check` WHERE checkgroup = 1 AND checkvalue = 1 AND stamp < NOW())
 ) AS worked
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
 SELECT user.id, fname, sname, email, checkvalue
