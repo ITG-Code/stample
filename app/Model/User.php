@@ -56,6 +56,7 @@ class User
   public function logout()
   {
     Session::delete("SessionUser");
+    Session::destroy();
   }
 
   private function createSelfFromEmail($email)

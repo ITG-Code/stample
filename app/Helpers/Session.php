@@ -26,4 +26,7 @@ class Session
   {
     unset($_SESSION[$name]);
   }
+  public static function destroy(){
+    session_destroy();
+  }
 }
