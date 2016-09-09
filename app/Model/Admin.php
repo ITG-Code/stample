@@ -29,7 +29,7 @@ ON checkins.checkgroup=checkouts.checkgroup");
     $stmt->bind_param('ii', $id, $id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $retval = [];git
+    $retval = [];
     while($row = $result->fetch_object())
       $retval[] = (new Shift($row->user, $row->checkin_time, $row->checkout_time))->getViewModel();
 
