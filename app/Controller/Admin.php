@@ -11,6 +11,12 @@ use Stample\Model\User;
 class Admin extends Controller
 {
   private $adminModel;
+  public function __construct()
+  {
+    parent::__construct();
+    $this->adminModel = new AdminModel();
+  }
+
   public function index(){
     if(!$this->user->isLoggedIn()){
       Redirect::to('/home/');
@@ -18,10 +24,9 @@ class Admin extends Controller
     if(!$this->user->isAdmin()){
       Redirect::to('/account/');
     }
-    $this->adminModel = new AdminModel();
 
     $this->view("admin/index",[
-      "table" => $this->adminModel->getTableData(),
+      'table' => $this->adminModel->getTableData(),
     ]);
   }
   public function employee($args = []){
@@ -33,6 +38,14 @@ class Admin extends Controller
 
     $this->view("admin/employee", [
         'employee' => $employee->getViewModel(),
+        'shifts' => $this->adminModel->getShiftsFromUserID($employee->getID()),
         ]);
+  }
+  public function shifts(){
+
+    $this->view('admin/shifts',[
+      'shifts' => $this->adminModel->getShifts(),
+    ]);
+
   }
 }

@@ -89,10 +89,10 @@ class HistogramUnit
   private function toHumanTime()
   {
     $this->hours = floor($this->workedTime / 3600);
-    $rest = $this->workedTime % 3600;
-    $this->minutes = floor($rest / 60);
-    $rest = $rest % 60;
-    $this->seconds = floor($rest / 1);
+    $remainder = $this->workedTime % 3600;
+    $this->minutes = floor($remainder / 60);
+    $remainder = $remainder % 60;
+    $this->seconds = floor($remainder / 1);
   }
   public function getViewModel(){
     return new \Stample\ViewModel\HistogramUnit($this->user, $this->start, $this->dayOrMonth, $this->workedTime, $this->hours, $this->minutes, $this->seconds);

@@ -3,26 +3,36 @@ namespace Stample\Model;
 
 use Stample\Core\Database;
 
-class Admin {
-	public function getTableData(){
-		$stmt = Database::getInstance()->getConnection()->prepare("
-		SELECT user.id, user.fname, user.sname, user.email, c.checkvalue, c.stamp, c.checkgroup, c.id AS checkid
-		FROM `user`
-		LEFT JOIN `check` AS c
-		ON user.id = c.user
-		WHERE stamp=(select MAX(stamp) FROM `check` WHERE user=user.id)");
 
-		$stmt->execute();
-		$res = $stmt->get_result();
-		$retval = [];
-		while($row = $stmt->fetch_object())
-		{
-			$retval[] = $row;
-		}
-		
-		return $retval;
+class Admin
+{
+  public function getTableData()
+  {
+    $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM user_status_for_admin");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $retval = [];
+    while($row = $result->fetch_object()) {
+      $retval[] = $row;
+    }
+    return $retval;
+  }
 
-	}
+  public function getShiftsFromUserID($id)
+  {
+    $stmt = Database::getInstance()->getConnection()->prepare(
+        "SELECT  checkins.user, checkins.stamp as checkin_time, checkouts.stamp as checkout_time FROM 
+(SELECT * FROM `check` WHERE checkvalue = 0 AND user = ?) as checkins
+INNER JOIN 
+(SELECT * FROM `check` WHERE checkvalue = 1 AND user = ?) as checkouts 
+ON checkins.checkgroup=checkouts.checkgroup");
+    $stmt->bind_param('ii', $id, $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $retval = [];
+    while($row = $result->fetch_object())
+      $retval[] = (new Shift($row->user, $row->checkin_time, $row->checkout_time))->getViewModel();
 
-
+    return $retval;
+  }
 }
