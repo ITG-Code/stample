@@ -23,7 +23,6 @@ class User
         $this->createExtendedSelfFromID($this->id);
       else
         $this->createSelfFromID($this->id);
-
     }
   }
   public function employ($id){
@@ -149,7 +148,7 @@ class User
     return $retval;
   }
 
-  private function doesIDExist($id)
+  public function doesIDExist($id)
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT count(*) as idcount FROM user WHERE id = ?");
     $stmt->bind_param('i', $id);
@@ -179,7 +178,9 @@ class User
     $this->lastCheck->fetchLastSelfByUser();
     $this->lastCheck->checkIn();
   }
-
+  public function getID(){
+    return $this->id;
+  }
   public function checkout()
   {
     if(!isset($this->lastCheck)) {

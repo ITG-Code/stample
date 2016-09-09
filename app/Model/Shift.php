@@ -34,11 +34,11 @@ class Shift
   private function calcTotalTime()
   {
     $shiftTime = (new \DateTime($this->endTime))->getTimestamp() - (new \DateTime($this->startTime))->getTimestamp();
-    $this->hours = $shiftTime % 3600;
-    $remainder = floor($shiftTime / 3600);
-    $this->minutes = $remainder % 60;
-    $remainder = floor($remainder / 60);
-    $this->seconds = floor($remainder % 1);
+    $this->hours = floor($shiftTime / 3600);
+    $remainder = $shiftTime % 3600;
+    $this->minutes = floor($remainder / 60);
+    $remainder = $remainder % 60;
+    $this->seconds = floor($remainder / 1);
   }
   public function getViewModel(){
       return new \Stample\ViewModel\Shift($this->user, $this->fname, $this->sname, $this->startTime, $this->endTime, $this->hours, $this->minutes, $this->seconds);

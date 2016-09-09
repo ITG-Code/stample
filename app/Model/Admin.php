@@ -31,8 +31,8 @@ ON checkins.checkgroup=checkouts.checkgroup");
     $result = $stmt->get_result();
     $retval = [];
     while($row = $result->fetch_object())
-      $retval[] = $row;
-    
+      $retval[] = (new Shift($row->user, $row->checkin_time, $row->checkout_time))->getViewModel();
+
     return $retval;
   }
 }
