@@ -46,25 +46,28 @@
     </table>
   </div>
   <div class="container">
-    <table class="table table-bordered">
-      <thead>
-      <tr>
-        <th>Namn</th>
-        <th>Instämpling</th>
-        <th>Utstämpling</th>
-        <th>Antal Timmar</th>
-      </tr>
-      </thead>
-      <tbody>
-      {% for shift in shifts %}
+    <div class="well">
+      <table class="table table-striped">
+        <thead>
         <tr>
-          <td>{{ shift.fname }} {{ shift.sname }}</td>
-          <td>{{ shift.startTime }}</td>
-          <td>{{ shift.endTime }}</td>
-          <td>{{ shift.hours }}:{{ shift.minutes }}h</td>
+          <th>Namn</th>
+          <th>Instämpling</th>
+          <th>Utstämpling</th>
+          <th>Antal Timmar</th>
         </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+        {% for shift in shifts %}
+          <tr>
+            <td>{{ shift.fname }} {{ shift.sname }}</td>
+            <td>{{ shift.startTime }}</td>
+            <td>{{ shift.endTime }}</td>
+            <td>{{ shift.hours }}:{{ shift.minutes }}h</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
   </div>
 {% endblock %}
