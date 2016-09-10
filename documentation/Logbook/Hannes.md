@@ -63,3 +63,8 @@ Nu hämtas histogramdata korrekt och blir sedan behandad, ibland inte lika rätt
 * Jag fixade enkodningsproblem som uppstod med åäö. Detta löste jag genom att definera vilket charset som PHP och MySQL skulle använda när de pratade med varandra.
 * Jag har nu implementerat all HTML som Pontus har producerat in i Twigmiljön vilket var lätt i stunder och mer komplicerat i andra. Vi har just nu ett ofixat problem med att attributtaggar vi lägger runt adminens tabell läggs någon helt annan stans. Detta händer även utan Twig.
 * Då vi har lite tid kvar till att implementera fler funktioner tänkte vi att vi skulle ha en tabell som visar när antingen en specifik person eller alla personer stämplar in och ut för dagen.
+
+## Fredag 2016-09-09
+* Idag lade vi till extra tabeller  för administratör som numera kan se när en anställd gick på sitt skift och när hen avslutade det. Denna funktion lade vi till för att vi hade en dag över i tidsplanen vilket resulterade i att vi implementerade mer info som admin kunde se.
+* Har fortfarande inte faktoriserat om Histogram klassen då jag glömde av det helt.
+* Vi la till en knapp som ändrar temat på webbsidan men än sålänge sparar den inte vilket alternativ man valde vid uppdatering av sidan då Javascripten aldrig säger till PHP att den vill byta utan den hämtar direkt den temafil som klienten valt.
