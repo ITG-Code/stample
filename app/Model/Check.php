@@ -23,6 +23,9 @@ class Check
     }
   }
 
+  /*
+  Sends data to the database that are saved in specific tables that are displayed in the SQL query for when a user checks in. We also make a check to see if the user is logged in or not before sending the data. 
+  */
   public function checkIn()
   {
     if(!$this->isCheckedIn()) {
@@ -34,6 +37,9 @@ class Check
 
   }
 
+  /*
+  Sends data to the database that are saved in specific tables that are displayed in the SQL query for when a user checks out. We also make a check to see if the user is logged in or not before sending the data. 
+  */
   public function checkout()
   {
     if(!$this->isCheckedIn()) {
@@ -68,8 +74,8 @@ class Check
   }
 
   /*
-   * Hämtar senaste check-raden som finns gjord av nuvarande användare
-   */
+  Gets the latest check row made by the current user.
+ */
   public function fetchLastSelfByUser()
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM `check` WHERE `user` = ? ORDER BY id DESC LIMIT 1");
