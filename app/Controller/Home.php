@@ -27,9 +27,9 @@ class Home extends Controller
   }
   public function setSkin($args = []){
     if($args[0] == "darkly"){
-      Session::set('skin', true);
+      Session::set('skin', 'darkly');
     }else{
-      Session::set('skin', false);
+      Session::set('skin', 'flatly');
     }
   }
 }

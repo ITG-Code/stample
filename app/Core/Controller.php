@@ -26,7 +26,7 @@ class Controller
 
   public function view($view, $data)
   {
-    $data['skin'] = Session::exists('skin') ? Session::get('skin') : 'flatly' ;
+    $data['skin'] = Session::get('skin') == 'darkly' ? Session::get('skin') : 'flatly' ;
     echo $this->twig->render($view . ".twig", $data);
   }
 
