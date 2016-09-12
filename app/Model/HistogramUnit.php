@@ -66,7 +66,12 @@ class HistogramUnit
         $checkin->times = $startTime;
         $checkin->rows = $checkout->rows;
       }
-
+      if($checkin->times > $checkout->times && $checkin->rows == $checkout->rows){
+        $checkin->times += $startTime->getTimestamp();
+        $checkout->times += (new \DateTime())->getTimestamp();
+        $checkin->rows++;
+        $checkout->rows++;
+      }
       if($checkin->rows > $checkout->rows) {
         $checkout->times += $this->periodEnds;
         $checkout->rows++;
