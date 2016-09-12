@@ -22,29 +22,34 @@ class HistogramUnit
   private $minutes = 0;
   private $seconds = 0;
 
+  private $graphData = [];
+  private $avarageWorkMonth = 170;
+  private $avarageWorkDay = 8;
+
+
   /**
    * HistogramUnit constructor.
    * @param $checkin Histogram::getCurrentYear or Histogram::getCurrentWeek
-   * @param $checkout: Pair with $checkin
-   * @param $startTime: DateTime
-   * @param $endTime: The time at which the period ends.
-   * @param $dayOrMonth: true if class represents a day false if it's a month
+   * @param $checkout : Pair with $checkin
+   * @param $startTime : DateTime
+   * @param $endTime : The time at which the period ends.
+   * @param $dayOrMonth : true if class represents a day false if it's a month
    */
   public function __construct($checkin, $checkout, $startTime, $endTime, $dayOrMonth)
   {
     $this->dayOrMonth = $dayOrMonth;
     if(!is_null($checkin)) {
 
-      if(!is_object($checkout)){
+      if(!is_object($checkout)) {
         $checkout = (object)[];
         $checkout->times = 0;
         $checkout->rows = 0;
       }
       $checkin->times = (float)$checkin->times;
       $checkout->times = (float)$checkout->times;
-      if($endTime->getTimestamp() > (new \DateTime())->getTimestamp()){
+      if($endTime->getTimestamp() > (new \DateTime())->getTimestamp()) {
         $this->periodEnds = (new \DateTime())->getTimestamp();
-      }else{
+      } else {
         $this->periodEnds = $endTime->getTimeStamp();
       }
       /**
@@ -66,7 +71,8 @@ class HistogramUnit
         $checkin->times = $startTime;
         $checkin->rows = $checkout->rows;
       }
-      if($checkin->times > $checkout->times && $checkin->rows == $checkout->rows){
+
+      if($checkin->times > $checkout->times && $checkin->rows == $checkout->rows) {
         $checkin->times += $startTime->getTimestamp();
         $checkout->times += (new \DateTime())->getTimestamp();
         $checkin->rows++;
@@ -83,13 +89,14 @@ class HistogramUnit
 
       }
       $this->workedTime = $checkout->times - $checkin->times;
+      $this->createGraphData();
       $this->toHumanTime();
     }
   }
 
 
   /**
-   *
+   * Converts $this->workTime from seconds to hours, minutes and seconds
    */
   private function toHumanTime()
   {
@@ -99,7 +106,24 @@ class HistogramUnit
     $remainder = $remainder % 60;
     $this->seconds = floor($remainder / 1);
   }
-  public function getViewModel(){
-    return new \Stample\ViewModel\HistogramUnit($this->user, $this->start, $this->dayOrMonth, $this->workedTime, $this->hours, $this->minutes, $this->seconds);
+
+  private function createGraphData()
+  {
+    $divider = $this->dayOrMonth ? $this->avarageWorkDay : $this->avarageWorkMonth;
+    $workPercentage = $this->workedTime / (3600 * $divider) * 100;
+    $remainder = $workPercentage;
+    while($remainder > 100) {
+      array_unshift($this->graphData, 100);
+      $remainder-=100;
+    }
+    array_unshift($this->graphData, $remainder);
+    for($i = count($this->graphData)-1; $i > 0; $i--){
+      $this->graphData[$i]= $this->graphData[$i] - $this->graphData[$i-1];
+    }
+  }
+
+  public function getViewModel()
+  {
+    return new \Stample\ViewModel\HistogramUnit($this->user, $this->start, $this->dayOrMonth, $this->workedTime, $this->hours, $this->minutes, $this->seconds, $this->graphData);
   }
 }

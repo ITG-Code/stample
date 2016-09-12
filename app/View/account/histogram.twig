@@ -5,7 +5,8 @@
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="vecka">
     <div class="container stati">
-      <div class="row">
+      <div class="row text-center">
+        {% set colors = ['info', 'warning', 'danger'] %}
         {% set daynames = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'] %}
         {% for day in daynames %}
         {% if loop.index0 < 4 %}
@@ -21,6 +22,11 @@
               {% else %}
                 <p>{{ day }} 00:00h</p>
               {% endif %}
+              <div class="progress">
+              {% for progress in user.histogram.weeks[loop.index0].graphData %}
+                <div class="progress-bar progress-bar-{{ colors[loop.index0] }}" style="width: {{ progress }}%"></div>
+              {% endfor %}
+              </div>
             </div>
           </div>
           {% endfor %}
@@ -30,16 +36,21 @@
     </div>
     <div class="tab-pane fade" id="monad">
       <div class="container stati">
-        <div class="row">
+        <div class="row text-center">
           {% set monthnames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'] %}
           {% for month in monthnames %}
-            <div class="col-lg-2 col-md-4 col-sm-6 col-xs-12">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
               <div class="well">
                 {% if user.histogram.months[loop.index0] is defined %}
                   <p>{{ month }} {{ user.histogram.months[loop.index0].hours }}:{{ user.histogram.months[loop.index0].minutes }}h</p>
                 {% else %}
                   <p>{{ month }} 00:00h</p>
                 {% endif %}
+                <div class="progress">
+                  {% for progress in user.histogram.months[loop.index0].graphData %}
+                    <div class="progress-bar progress-bar-{{ colors[loop.index0] }}" style="width: {{ progress }}%"></div>
+                  {% endfor %}
+                </div>
               </div>
             </div>
           {% endfor %}
