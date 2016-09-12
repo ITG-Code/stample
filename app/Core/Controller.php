@@ -13,7 +13,7 @@ class Controller
     $this->user = $this->model('User');
     $this->user->prepare();
 
-    $this->twigloader = new \Twig_Loader_Filesystem("../app/view");
+    $this->twigloader = new \Twig_Loader_Filesystem("../app/View");
     $this->twig = new \Twig_Environment($this->twigloader, [
         'cache' => "../twigcache/",
         'debug' => true,
