@@ -113,13 +113,10 @@ class HistogramUnit
     $workPercentage = $this->workedTime / (3600 * $divider) * 100;
     $remainder = $workPercentage;
     while($remainder > 100) {
-      array_unshift($this->graphData, 100);
+      array_push($this->graphData, 100);
       $remainder-=100;
     }
-    array_unshift($this->graphData, $remainder);
-    for($i = count($this->graphData)-1; $i > 0; $i--){
-      $this->graphData[$i]= $this->graphData[$i] - $this->graphData[$i-1];
-    }
+    array_push($this->graphData, $remainder);
   }
 
   public function getViewModel()
