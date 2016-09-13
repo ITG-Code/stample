@@ -15,6 +15,11 @@ class User
   private $histogram;
   private $admin;
 
+  /**
+   * Fills self with data
+   * lastCheck is not filled if they don't exist
+   * @return bool       : false if user is not logged in
+   */
   public function prepare()
   {
     if(!$this->isLoggedIn()) {
@@ -26,12 +31,22 @@ class User
     else
       $this->createSelfFromID($this->id);
   }
+
+  /**
+   * Generates self and \Stample\Model\Histogram from user id
+   * @param integer $id
+   * @return void
+   */
   public function employ($id){
     $this->id = $id;
     $this->createSelfFromID($this->id);
     $this->generateHistogram();
   }
 
+  /**
+   * Logs a user in
+   * @return bool         : true if success, false if not
+   */
   public function login()
   {
     $this->email = $_POST['login-email'];
@@ -46,10 +61,18 @@ class User
 
   }
 
+  /**
+   * Checks if a user is logged in or not
+   * @return bool       : true if user id is set in SESSION and is a valid user id, false is not
+   */
   public function isLoggedIn()
   {
     return boolval(Session::get("SessionUser")) ? $this->doesIDExist(Session::get('SessionUser')) : false;
   }
+
+  /**
+   * @return bool       : true if user is admin, false if not
+   */
   public function isAdmin(){
     return boolval($this->admin);
   }
@@ -60,6 +83,11 @@ class User
     Session::destroy();
   }
 
+  /**
+   * Best used when user log ins as the unique user info that you get from the log in credentials is the email
+   * @param $email
+   * @return bool|string  : hashed and salted password on success, false on failure
+   */
   private function createSelfFromEmail($email)
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM user WHERE email = ?");
@@ -78,6 +106,12 @@ class User
     return boolval($hashedPassword) ? $hashedPassword : false;
   }
 
+  /**
+   * Fills this objects primary variables and skips $lastCheck and $histogram
+   * Best use is for checking if the user is logged in or not
+   * @param integer $id   : userID
+   * @return bool|string  : hashed and salted password on success, false on failure
+   */
   private function createSelfFromID($id)
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM user WHERE id = ?");
@@ -96,6 +130,11 @@ class User
     return boolval($hashedPassword) ? $hashedPassword : false;
   }
 
+  /**
+   * Fills this object with data and fetches the latest check from the database
+   * @param integer $id   : userID
+   * @return bool|string  : hashed and salted password on success, false on failure
+   */
   private function createExtendedSelfFromID($id)
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup, checkvalue, stamp, admin FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = ? ORDER BY `check`.stamp DESC LIMIT 1");
@@ -122,6 +161,11 @@ class User
   }
 
 
+  /**
+   * Registers a user
+   * Credentials are fetched from $_POST
+   * @return bool   : true on success, false on
+   */
   public function register()
   {
     $email = $_POST['register-email'];
@@ -147,6 +191,12 @@ class User
     $stmt->close();
     return $retval;
   }
+
+  /**
+   * Changes the password
+   * Needed data is fetched from $_POST
+   * @return bool   : true on success false on failure
+   */
   public function changePassword(){
     $originalPassword = $_POST['changepassword-original'];
     $originalPassword = trim($originalPassword);
@@ -170,6 +220,10 @@ class User
     return $retval;
   }
 
+  /**
+   * @param $id   : userID
+   * @return bool : true if the user id exists, false if not
+   */
   public function doesIDExist($id)
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT count(*) as idcount FROM user WHERE id = ?");
@@ -181,6 +235,10 @@ class User
     return boolval($row->idcount);
   }
 
+  /**
+   * Gets the total amount of checkin and checkouts a particular user has
+   * @return integer
+   */
   private function getCheckCount()
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT count(*) as rowcount FROM `check` WHERE user = ?");
@@ -192,6 +250,10 @@ class User
     return $row->rowcount;
   }
 
+  /**
+   * Checks the user in
+   * @return void
+   */
   public function checkIn()
   {
     if(!isset($this->lastCheck)) {
@@ -200,9 +262,17 @@ class User
     $this->lastCheck->fetchLastSelfByUser();
     $this->lastCheck->checkIn();
   }
+
+  /**
+   * @return integer
+   */
   public function getID(){
     return $this->id;
   }
+
+  /**
+   * @return bool
+   */
   public function checkout()
   {
     if(!isset($this->lastCheck)) {
@@ -212,11 +282,17 @@ class User
     return $this->lastCheck->checkout();
   }
 
+  /**
+   * @return \Stample\Model\Check
+   */
   public function getLastCheck()
   {
     return $this->lastCheck;
   }
 
+  /**
+   * @return \Stample\ViewModel\User
+   */
   public function getViewModel()
   {
     if(!isset($this->lastCheck)) {
@@ -228,6 +304,10 @@ class User
     return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, $this->lastCheck->getViewModel(), $this->histogram->getViewModel(), $this->admin);
   }
 
+  /**
+   * Creates a \Stample\Model\Histogram for the user in this object
+   * @return void
+   */
   public function generateHistogram()
   {
     $this->histogram = new Histogram($this->id);
