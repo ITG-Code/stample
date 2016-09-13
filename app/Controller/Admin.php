@@ -36,7 +36,7 @@ class Admin extends Controller
     }
     $employee = new User();
     $employee->employ($args[0]);
-
+    $employee->generateHistogram();
     $this->view("admin/employee", [
         'employee' => $employee->getViewModel(),
         'shifts' => $this->adminModel->getShiftsFromUserID($employee->getID()),
