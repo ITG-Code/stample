@@ -15,6 +15,10 @@ class Supervisor
 {
   private $allUserStatus = [];
 
+  /**
+   * Gets all users last check activity from the database
+   * @return void
+   */
   private function fetchAllUserStatus()
   {
     //$stmt = Database::getInstance()->getConnection()->prepare("SELECT id as checkid, checkgroup, checkvalue , `user`, stamp FROM `check` RIGHT JOIN (SELECT MAX(id) as last FROM `check` GROUP BY `user`) as lastcheck ON `check`.`id`=`lastcheck`.last");
@@ -35,6 +39,10 @@ class Supervisor
     }
   }
 
+  /**
+   * Returns the last Check that every user has made.
+   * @return array
+   */
   public function getAllUsersStatus()
   {
     if(empty($this->allUserStatus))

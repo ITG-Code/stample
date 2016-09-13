@@ -23,9 +23,10 @@ class Check
     }
   }
 
-  /*
-  Sends data to the database that are saved in specific tables that are displayed in the SQL query for when a user checks in. We also make a check to see if the user is logged in or not before sending the data. 
-  */
+  /**
+   * Sends data to the database that are saved in specific tables that are displayed in the SQL query for when a user checks in. We also make a check to see if the user is logged in or not before sending the data.
+   * @return void
+   */
   public function checkIn()
   {
     if(!$this->isCheckedIn()) {
@@ -37,9 +38,10 @@ class Check
 
   }
 
-  /*
-  Sends data to the database that are saved in specific tables that are displayed in the SQL query for when a user checks out. We also make a check to see if the user is logged in or not before sending the data. 
-  */
+  /**
+   * Sends data to the database that are saved in specific tables that are displayed in the SQL query for when a user checks out. We also make a check to see if the user is logged in or not before sending the data.
+   * @return bool     : true on success, false on failure
+   */
   public function checkout()
   {
     if(!$this->isCheckedIn()) {
@@ -56,6 +58,10 @@ class Check
 
   }
 
+  /**
+   * Checks wether the user is checked in or not
+   * @return bool   : true if checkvalue is 1, else false
+   */
   private function isCheckedIn()
   {
     if(!isset($this->checkvalue)) {
@@ -64,6 +70,10 @@ class Check
     return isset($this->checkvalue) ? !boolval($this->checkvalue) : false;
   }
 
+  /**
+   *
+   * @return integer    : The next checkgroup value to use when inserting a new Checkin
+   */
   private function getNextCheckGroup()
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT MAX(checkgroup) as maxgroup from `check`");
@@ -73,9 +83,9 @@ class Check
     return $row->maxgroup + 1;
   }
 
-  /*
-  Gets the latest check row made by the current user.
- */
+  /**
+   * Gets the latest check row made by this user object.
+   */
   public function fetchLastSelfByUser()
   {
     $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM `check` WHERE `user` = ? ORDER BY stamp DESC LIMIT 1");
@@ -142,6 +152,9 @@ class Check
     return $this->stamp;
   }
 
+  /**
+   * @return \Stample\ViewModel\Check
+   */
   public function getViewModel()
   {
     return new \Stample\ViewModel\Check($this->id, $this->checkgroup, $this->checkvalue, $this->user, $this->stamp);

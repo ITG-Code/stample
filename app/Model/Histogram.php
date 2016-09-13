@@ -29,6 +29,14 @@ class Histogram
     $this->months = $this->getPeriod($currentYear, new \DateTime(), 'P1M', false);
   }
 
+  /**
+   * Creates HistogramUnits that are $interval long
+   * @param \DateTime $startTime            : Search for DateTimes bigger than this one
+   * @param \DateTime $periodEnd            : Search for DateTimes smaller than this one
+   * @param \DateInterval param $interval
+   * @param bool $weekOrMonth
+   * @return array
+   */
   private function getPeriod($startTime, $periodEnd, $interval, $weekOrMonth)
   {
 
@@ -57,6 +65,9 @@ ORDER BY checkvalue ASC
     return $returnValue;
   }
 
+  /**
+   * @return \Stample\ViewModel\Histogram
+   */
   public function getViewModel()
   {
     $weekViewModels = [];

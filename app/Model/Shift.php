@@ -31,6 +31,10 @@ class Shift
     $this->endTime = $endTime;
     $this->calcTotalTime();
   }
+
+  /**
+   *  Calculates how many hours, minutes and seconds long this shift was
+   */
   private function calcTotalTime()
   {
     $shiftTime = (new \DateTime($this->endTime))->getTimestamp() - (new \DateTime($this->startTime))->getTimestamp();
@@ -40,6 +44,10 @@ class Shift
     $remainder = $remainder % 60;
     $this->seconds = floor($remainder / 1);
   }
+
+  /**
+   * @return \Stample\ViewModel\Shift
+   */
   public function getViewModel(){
       return new \Stample\ViewModel\Shift($this->user, $this->fname, $this->sname, $this->startTime, $this->endTime, $this->hours, $this->minutes, $this->seconds);
   }

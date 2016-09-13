@@ -9,9 +9,8 @@ class HistogramUnit
   private $start;
 
   /**
-   * true = vecka
-   * false = månad
-   *
+   * true = week
+   * false = month
    * @var bool
    */
   private $dayOrMonth = false;
@@ -23,8 +22,8 @@ class HistogramUnit
   private $seconds = 0;
 
   private $graphData = [];
-  private $avarageWorkMonth = 170;
-  private $avarageWorkDay = 8;
+  const AVARGE_WORK_MONTH = 170;
+  const AVARAGE_WORK_DAY = 8;
 
 
   /**
@@ -107,9 +106,12 @@ class HistogramUnit
     $this->seconds = floor($remainder / 1);
   }
 
+  /**
+   * Turns the workedTime into a percentage of a typical working shift
+   */
   private function createGraphData()
   {
-    $divider = $this->dayOrMonth ? $this->avarageWorkDay : $this->avarageWorkMonth;
+    $divider = $this->dayOrMonth ? self::AVARAGE_WORK_DAY : self::AVARGE_WORK_MONTH;
     $workPercentage = $this->workedTime / (3600 * $divider) * 100;
     $remainder = $workPercentage;
     while($remainder > 100) {
