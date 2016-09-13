@@ -52,3 +52,8 @@ På tidsplanen står det att vi ska implementera PHP-koden idag men är till st�
 Vad vi kommer göra idag är att fixa buggar såsom att få javascriptklockan att fungera och optimera urlvägarna för att göra det smidigt att ta sig runt på sidan.
 Vi gick igenom betygskritereierna och kollade av vad vi hade och inte hade gjort.
 Vi ligger efter på koddokumentationen i form av kommentarer. UMLen är utdaterad och behöver uppdateras. Vi upptäckte att vi var dom enda med versionkontroll bland grupperna. Det visar sig att använda git/github var en bra idé!
+
+
+## 2016-09-13
+Pontus är sjuk men bestämde sig för att åka hit ändå.
+Igår lade Hannes till en progress bar på varje på statistiksvisningen. Lite okart vad en progress-bar längd är och vad det betyder att ha den uppfylld men vi hittar nog en lösning på det. Emil kommenterade en del kod igår. Hannes fixade så att temavalet finns kvar efter uppdatering av sidan och försvinner endast när man loggar ut. Hannes gjorde en omfaktorisering av Histogram koden och fixade en bugg som uppstod när man hade en instämpling och en utstämpling varpå utstämplingen är före instämplingen (mer om detta i hannes loggbok). Idag är tanken att Pontus och Emil ska flytta runt lite på knapparna på sidan då den nuvarande konfigurationen inte riktigt är 'up to par'. Hannes ska applicera patchen på länkproblement i adminpanelen som Pontus hittade. Emil ska slänga in data i databasen som vi kan buggtesta och använda för presentationen.
