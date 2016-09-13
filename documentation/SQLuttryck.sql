@@ -17,7 +17,7 @@ LEFT JOIN `check`
 ON user.id = `check`.user
 WHERE stamp=(select max(stamp) from `check` where user=user.id)
 
- /* Uppdaterad view som innhehåller check id för admins*/
+ /* Uppdaterad view som innhehåller check id för admins så vi far ut den data vi vill ha för tabellen*/
 SELECT user.id, user.fname, user.sname, user.email, c.checkvalue, c.stamp, c.checkgroup, c.id AS checkid
 FROM `user`
 LEFT JOIN `check` AS c
