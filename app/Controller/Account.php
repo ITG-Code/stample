@@ -57,4 +57,21 @@ class Account extends Controller
     $this->user->checkout();
     Redirect::to("/account/home");
   }
+  public function settings(){
+    if(!$this->user->isLoggedIn()){
+      Redirect::to('/home/');
+    }
+    $this->view('account/settings',[
+        'user' => $this->user->getViewModel(),
+    ]);
+  }
+  public function changepassword(){
+    if(!$this->user->isLoggedIn())
+      Redirect::to('/home/');
+
+    if(!$this->user->changePassword())
+      Redirect::to('/account/settings');
+
+    Redirect::to('/account/');
+  }
 }

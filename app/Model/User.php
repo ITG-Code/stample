@@ -148,6 +148,28 @@ class User
     $stmt->close();
     return $retval;
   }
+  public function changePassword(){
+    $originalPassword = $_POST['changepassword-original'];
+    $originalPassword = trim($originalPassword);
+    $newPassword = $_POST['changepassword-new'];
+    $newPassword = trim($newPassword);
+    $passwordConfirm = $_POST['changepassword-confirm'];
+    $passwordConfirm = trim($passwordConfirm);
+
+    if($newPassword != $passwordConfirm){
+      return false;
+    }
+    $this->prepare();
+    if(!password_verify($originalPassword, $this->password))
+      return false;
+
+    $hash = password_hash($newPassword, PASSWORD_BCRYPT);
+    $stmt = Database::getInstance()->getConnection()->prepare('UPDATE `user` SET password = ? WHERE id = ?');
+    $stmt->bind_param('si', $hash, $this->id);
+    $retval = $stmt->execute();
+    $stmt->close();
+    return $retval;
+  }
 
   public function doesIDExist($id)
   {
@@ -200,6 +222,9 @@ class User
   {
     if(!isset($this->lastCheck)) {
       return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, new \Stample\ViewModel\Check(0, 0, 1, $this->id, "Ingen historik"), $this->histogram->getViewModel(), $this->admin);
+    }
+    if(!isset($this->histogram)) {
+      return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, $this->lastCheck->getViewModel(), NULL, $this->admin);
     }
     return new \Stample\ViewModel\User($this->id, $this->email, $this->fname, $this->sname, $this->lastCheck->getViewModel(), $this->histogram->getViewModel(), $this->admin);
   }

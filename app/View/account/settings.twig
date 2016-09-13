@@ -1,0 +1,39 @@
+{% extends 'main.twig' %}
+{% block title %}Inställningar{% endblock %}
+{% block body %}
+  <div class="container">
+    <div class="col-md-12">
+    <div class="well">
+      <form class="form-horizontal" action="/public/account/changepassword" method="POST">
+        <fieldset>
+          <div class="form-group">
+            <label for="changepassword-original" class="label-control col-md-2">Nuvarande lösenord</label>
+            <div class="col-md-10">
+              <input type="password" name="changepassword-original" class="form-control" placeholder="Nuvarande lösenord" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="changepassword-new" class="label-control col-md-2">Nytt lösenord</label>
+            <div class="col-md-10">
+              <input type="password" name="changepassword-new" class="form-control" placeholder="Nytt lösenord" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="changepassword-confirm" class="label-control col-md-2">Bekräfta lösenord</label>
+            <div class="col-md-10">
+              <input type="password" name="changepassword-confirm" class="form-control" placeholder="Bekräfta lösenord" required="required">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-10">
+              <input type="submit" name="changepassword-send"  value="Ändra lösenord" class="btn btn-primary btn-raised">
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+    </div>
+  </div>
+
+{% endblock %}
