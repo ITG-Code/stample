@@ -46,4 +46,7 @@ jQuery(document).ready(function($) {
     });
 });
 
-startTid();
+startTid();$('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function() {
+    var $target = $(this).parent().next()
+    $target.data('bs.collapse') ? $target.collapse('toggle') : $target.collapse()
+});
