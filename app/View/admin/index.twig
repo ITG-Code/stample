@@ -25,21 +25,17 @@
       <tbody>
       {% for employee in table %}
         {% if employee.checkvalue == 0 %}
-          <a href="/public/admin/employee/{{ employee.userid }}">
-            <tr class="success">
-              <td>{{ employee.fname }} {{ employee.sname }}</td>
-              <td>Instämplad: {{ employee.stamp }}</td>
-              <td><span class="glyphicon glyphicon-ok"></span></td>
-            </tr>
-          </a>
+          <tr class="success clickable-row" data-href="/public/admin/employee/{{ employee.userid }}">
+            <td>{{ employee.fname }} {{ employee.sname }}</td>
+            <td>Instämplad: {{ employee.stamp }}</td>
+            <td><span class="glyphicon glyphicon-ok"></span></td>
+          </tr>
         {% else %}
-          <a href="/public/admin/employee/{{ employee.userid }}">
-            <tr class="danger">
-              <td>{{ employee.fname }} {{ employee.sname }}</td>
-              <td>Utstämplad: {{ employee.stamp }}</td>
-              <td><span class="glyphicon glyphicon-remove"></span></td>
-            </tr>
-          </a>
+          <tr class="danger clickable-row" data-href="/public/admin/employee/{{ employee.userid }}">
+            <td>{{ employee.fname }} {{ employee.sname }}</td>
+            <td>Utstämplad: {{ employee.stamp }}</td>
+            <td><span class="glyphicon glyphicon-remove"></span></td>
+          </tr>
         {% endif %}
       {% endfor %}
       </tbody>
