@@ -78,7 +78,7 @@ class Check
  */
   public function fetchLastSelfByUser()
   {
-    $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM `check` WHERE `user` = ? ORDER BY id DESC LIMIT 1");
+    $stmt = Database::getInstance()->getConnection()->prepare("SELECT * FROM `check` WHERE `user` = ? ORDER BY stamp DESC LIMIT 1");
     $stmt->bind_param('i', $this->user);
     $stmt->execute();
     $res = $stmt->get_result();
