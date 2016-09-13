@@ -17,13 +17,14 @@ class User
 
   public function prepare()
   {
-    if($this->isLoggedIn()) {
-      $this->id = Session::get("SessionUser");
-      if($this->getCheckCount())
-        $this->createExtendedSelfFromID($this->id);
-      else
-        $this->createSelfFromID($this->id);
+    if(!$this->isLoggedIn()) {
+      return false;
     }
+    $this->id = Session::get("SessionUser");
+    if($this->getCheckCount())
+      $this->createExtendedSelfFromID($this->id);
+    else
+      $this->createSelfFromID($this->id);
   }
   public function employ($id){
     $this->id = $id;
@@ -86,7 +87,6 @@ class User
     $stmt->close();
     $hashedPassword = "";
     if($obj = $res->fetch_object()) {
-      //var_dump($obj);
       $this->id = $obj->id;
       $this->fname = $obj->fname;
       $this->sname = $obj->sname;
@@ -98,14 +98,13 @@ class User
 
   private function createExtendedSelfFromID($id)
   {
-    $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup, checkvalue, stamp, admin FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = ? ORDER BY `check`.id DESC LIMIT 1");
+    $stmt = Database::getInstance()->getConnection()->prepare("SELECT `user`.id as userid, fname, sname, email, password, `check`.id as checkid, checkgroup, checkvalue, stamp, admin FROM `check` RIGHT JOIN user ON `check`.user=`user`.id WHERE `check`.`user` = ? ORDER BY `check`.stamp DESC LIMIT 1");
     $stmt->bind_param('i', $id);
     $stmt->execute();
     $res = $stmt->get_result();
     $stmt->close();
     $hashedPassword = "";
     if($obj = $res->fetch_object()) {
-      //var_dump($obj);
       $this->id = $obj->userid;
       $this->fname = $obj->fname;
       $this->sname = $obj->sname;

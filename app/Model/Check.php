@@ -95,7 +95,7 @@ class Check
   }
 
   /**
-   * @return mixed
+   * @return integer
    */
   public function getId()
   {
@@ -103,7 +103,7 @@ class Check
   }
 
   /**
-   * @return mixed
+   * @return integer
    */
   public function getCheckgroup()
   {
@@ -111,7 +111,7 @@ class Check
   }
 
   /**
-   * @return mixed
+   * @return integer
    */
   public function getCheckvalue()
   {
@@ -119,7 +119,7 @@ class Check
   }
 
   /**
-   * @return mixed
+   * @return integer
    */
   public function getUser()
   {
@@ -135,7 +135,7 @@ class Check
   }
 
   /**
-   * @return mixed
+   * @return DateTime
    */
   public function getStamp()
   {
