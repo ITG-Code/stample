@@ -1,22 +1,3 @@
-function startTid() {
-    var idag = new Date();
-    var t = idag.getHours();
-    var m = idag.getMinutes();
-    var s = idag.getSeconds();
-    m = checkTid(m);
-    s = checkTid(s);
-    document.getElementById('txt').innerHTML = t + ":" + m + ":" + s;
-    setTimeout(startTid, 500);
-}
-//lägger till en nolla framför tal som är mindre än 10
-function checkTid(i) {
-    if (i < 10) {
-        i = "0" + i;
-    }
-    return i;
-}
-
-
 var switsh = document.getElementById('theme').getAttribute("href") != '/public/css/flatly.css';
 function changeCSS() {
     if (switsh) {
@@ -45,8 +26,7 @@ jQuery(document).ready(function($) {
         window.document.location = $(this).data("href");
     });
 });
-
-startTid();$('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function() {
+$('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function() {
     var $target = $(this).parent().next()
     $target.data('bs.collapse') ? $target.collapse('toggle') : $target.collapse()
 });
