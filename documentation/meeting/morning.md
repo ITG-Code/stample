@@ -57,3 +57,10 @@ Vi ligger efter på koddokumentationen i form av kommentarer. UMLen är utdatera
 ## 2016-09-13
 Pontus är sjuk men bestämde sig för att åka hit ändå.
 Igår lade Hannes till en progress bar på varje på statistiksvisningen. Lite okart vad en progress-bar längd är och vad det betyder att ha den uppfylld men vi hittar nog en lösning på det. Emil kommenterade en del kod igår. Hannes fixade så att temavalet finns kvar efter uppdatering av sidan och försvinner endast när man loggar ut. Hannes gjorde en omfaktorisering av Histogram koden och fixade en bugg som uppstod när man hade en instämpling och en utstämpling varpå utstämplingen är före instämplingen (mer om detta i hannes loggbok). Idag är tanken att Pontus och Emil ska flytta runt lite på knapparna på sidan då den nuvarande konfigurationen inte riktigt är 'up to par'. Hannes ska applicera patchen på länkproblement i adminpanelen som Pontus hittade. Emil ska slänga in data i databasen som vi kan buggtesta och använda för presentationen.
+
+## 2016-09-14
+* Pontus låter friskare än igår dock hostar han, epedimin fortsätter.
+* Stefan sa åt Hannes att spela XBox mitt i mötet, så vi tog en liten puas. När Hannes var klar med XBox kidnappade Stefan Pontus och mötet blir försenat ännu mer.
+* Emil och Pontus ska ut på jakt... Buggjakt. Som sista utväg kallar dom in Jeanette för en Air Strike.
+* Utöver det kommer Emil lägga in data i databasen för att simulera en riktig arbetsplats.
+* Hannes har som mål att lösa månadsaktivitetsexpansionen innan lunch.
