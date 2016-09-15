@@ -80,7 +80,7 @@ class User
   public function logout()
   {
     Session::delete("SessionUser");
-    Session::destroy();
+    //Session::destroy();
   }
 
   /**
@@ -260,7 +260,7 @@ class User
       $this->lastCheck = new \Stample\Model\Check($this->id);
     }
     $this->lastCheck->fetchLastSelfByUser();
-    $this->lastCheck->checkIn();
+    return $this->lastCheck->checkIn();
   }
 
   /**

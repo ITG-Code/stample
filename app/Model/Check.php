@@ -25,17 +25,19 @@ class Check
 
   /**
    * Sends data to the database that are saved in specific tables that are displayed in the SQL query for when a user checks in. We also make a check to see if the user is logged in or not before sending the data.
-   * @return void
+   * @return bool
    */
   public function checkIn()
   {
-    if(!$this->isCheckedIn()) {
-      $checkgroup = $this->getNextCheckGroup();
-      $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO `check`(checkgroup, checkvalue, `user`, stamp) VALUES(?,0,?,NOW()) ");
-      $stmt->bind_param('ii', $checkgroup, $this->user);
-      $stmt->execute();
+    if($this->isCheckedIn()) {
+      return false;
     }
-
+    $checkgroup = $this->getNextCheckGroup();
+    $stmt = Database::getInstance()->getConnection()->prepare("INSERT INTO `check`(checkgroup, checkvalue, `user`, stamp) VALUES(?,0,?,NOW()) ");
+    $stmt->bind_param('ii', $checkgroup, $this->user);
+    $retval = $stmt->execute();
+    $stmt->close();
+    return $retval;
   }
 
   /**

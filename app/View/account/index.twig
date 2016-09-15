@@ -6,11 +6,13 @@
   <div class="container">
     <div class="row">
       {% if user.lastCheck.checkvalue == 1 %}
-        <a href="/public/account/checkin" class="btn btn-primary btn-lg col-lg-12 col-md-12 col-sm-12 col-xs-12"><h3>Stämpla
-            in</h3></a>
+        <div href="/public/account/checkin" onclick="javascript:check(this)" class="btn btn-primary btn-lg col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h3>Stämpla in</h3>
+        </div>
       {% else %}
-        <a href="/public/account/checkout" class="btn btn-primary btn-lg col-lg-12 col-md-12 col-sm-12 col-xs-12"><h3>
-            Stämpla ut</h3></a>
+        <div href="/public/account/checkout" onclick="javascript:check(this)" class="btn btn-primary btn-lg col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h3>Stämpla ut</h3>
+        </div>
       {% endif %}
     </div>
   </div>

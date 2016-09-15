@@ -18,7 +18,7 @@ class Account extends Controller
   {
     if(!$this->user->isLoggedIn())
       Redirect::to("/home");
-      $this->user->generateHistogram();
+    $this->user->generateHistogram();
     $this->view('account/index', [
         'user' => $this->user->getViewModel(),
         'shifts' => Admin::getShiftsFromUserID($this->user->getId()),
@@ -32,16 +32,17 @@ class Account extends Controller
     else
       Redirect::to('/home');
   }
-  public function register(){
-    if($this->user->isLoggedIn()){
+
+  public function register()
+  {
+    if($this->user->isLoggedIn()) {
       Redirect::to('/account/home');
     }
-    if($this->user->register()){
+    if($this->user->register()) {
       Redirect::to('/home');
-    }else{
+    } else {
       Redirect::to('/home/register');
     }
-
   }
 
   public function logout()
@@ -52,22 +53,30 @@ class Account extends Controller
 
   public function checkIn()
   {
-    $this->user->checkIn();
-    Redirect::to("/account/home");
+    ob_end_clean();
+    echo $this->user->checkIn();
+    //Redirect::to("/account/home");
   }
-  public function checkout(){
-    $this->user->checkout();
-    Redirect::to("/account/home");
+
+  public function checkout()
+  {
+    ob_end_clean();
+    echo $this->user->checkout();
+    //Redirect::to("/account/home");
   }
-  public function settings(){
-    if(!$this->user->isLoggedIn()){
+
+  public function settings()
+  {
+    if(!$this->user->isLoggedIn()) {
       Redirect::to('/home/');
     }
-    $this->view('account/settings',[
+    $this->view('account/settings', [
         'user' => $this->user->getViewModel(),
     ]);
   }
-  public function changepassword(){
+
+  public function changepassword()
+  {
     if(!$this->user->isLoggedIn())
       Redirect::to('/home/');
 
