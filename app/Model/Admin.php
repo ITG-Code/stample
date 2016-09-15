@@ -35,7 +35,7 @@ class Admin
 (SELECT * FROM `check` WHERE checkvalue = 0 AND user = ?) as checkins
 INNER JOIN 
 (SELECT * FROM `check` WHERE checkvalue = 1 AND user = ?) as checkouts 
-ON checkins.checkgroup=checkouts.checkgroup");
+ON checkins.checkgroup=checkouts.checkgroup ORDER BY checkin_time DESC LIMIT 50");
     $stmt->bind_param('ii', $id, $id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -53,7 +53,7 @@ ON checkins.checkgroup=checkouts.checkgroup");
   public function getShiftsFromDepartment()
   {
     $stmt = Database::getInstance()->getConnection()->prepare(
-        "SELECT * FROM all_shifts_ordered_by_checkin");
+        "SELECT * FROM all_shifts_ordered_by_checkin LIMIT 50");
     $stmt->execute();
     $result = $stmt->get_result();
     $retval = [];
