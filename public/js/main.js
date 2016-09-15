@@ -39,10 +39,15 @@ function check(element) {
                 if(hrefvalue.indexOf("checkin")){
                     element.setAttribute('href', '/public/account/checkout');
                     element.innerHTML = '<h3>Stämpla ut</h3>';
+                    element.classList.remove('btn-primary');
+                    element.classList.add('btn-danger');
                 }
                 if(hrefvalue.indexOf("checkout")){
                     element.setAttribute('href', '/public/account/checkin');
                     element.innerHTML = '<h3>Stämpla in</h3>';
+                    element.classList.add('btn-primary');
+                    element.classList.remove('btn-danger');
+
                 }
             }
             else
