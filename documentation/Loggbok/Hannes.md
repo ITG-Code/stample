@@ -82,3 +82,14 @@ Nu hämtas histogramdata korrekt och blir sedan behandad, ibland inte lika rätt
 * Jag och Pontus bestämde oss för att vi skulle göra Histogramet mer kompakt i adminpanelen så att den såg exakt lika ut som när man tittar på sin egna panel.
 * Jag spenderade lite tid på att lägga upp sidan på en linux server under matrasten så att vi har en demo att visa under presentationen av projektet. Jag korrigerade lite filnamn för linux igår (vilket jag glömde skriva igår) då linux är case sensitive när det kommer till mer eller mindre allt. Gårdagens fixande på Linux slutade med att Twig blev ledsen för att den inte fick skapa filer i webbmappen. En idé skulle vara i /tmp någonstans då Twig vill skapa cachefiler.
 * Ioch med att vi har en massa annat en kodning fram till presentationsdagen vill jag gärna att vi blir klara med första föremålet på dagens lista så fort som möjligt så vi kan diskutera tweaks mm resten av dagen alternativt jobbar på presentation(erna).
+
+## Torsdag 2016-09-15
+Jag ser att jag glömde sriva loggbok igår. Ooh well...
+* Idag började projektarbetet efter lunch då vi hade presentationer innan dess. Det vi gjorde idag var att optimera hur webbsidan såg ut och hur man tog sig runt på den. Vi bestämde oss t.ex att vi skulle ha menyn satt på botten av webbsidan då menyn skulle se dum ut brevid jumbotronen.
+* Vi slimmade även ner sidan så att olika sorters information är indelade i olika tabbar så att man bara blir presenterad en form av data itaget.
+* Jag gjorde så att stämpla-in-knappen använder sig av Ajax istället för att ladda om hela sidan. Detta gör att tiden man spenderar på sidan är avsevärt lägre då majoriteten av laddningstiden är att kalkylera den information som ska visas i diverse tabeller osv.
+* Jag är väl inte riktigt nöjd med produkten. Det finns lite grejer som jag hade velat implementera såsom automatiska email för att reset:a sitt lösenord men jag har ALDRIG hållt på med email utanför färdiga system och har hört hur svårt det är att sätta upp så jag vet inte hur lång tid det skulle ta.
+
+### Utvärdering om utvecklingsprocessen
+* Jag hade jag gärna haft någon form tester som kördes för varje git commit som kolla så att alla klasser fungerade som dom skulle. Dock kan det ha varit lite avancerat då jag inte hade skrivit kod på någon månad.
+* Något jag ångrar nu i efterhand är att jag inte använde PHP 7s typning vilket hade gjort debugging av systemet mycket lättare samt gjort att man fick tänka igenom funktionerna lite mer, vilket är bra.
