@@ -34,6 +34,9 @@ class Admin extends Controller
     if(empty($args)){
       Redirect::to("/admin");
     }
+    if(!$this->user->doesIDExist($args[0])){
+      Redirect::to('/admin');
+    }
     $employee = new User();
     $employee->employ($args[0]);
     $employee->generateHistogram();
