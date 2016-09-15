@@ -1,17 +1,10 @@
 {% extends 'main.twig' %}
+{% block title %}Adminpanel{% endblock %}
+
 {% block body %}
-  <div class="jumbotron">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-          <a href="/public/account" class="btn btn-primary btn-lg"><span
-                class="glyphicon glyphicon-chevron-left"></span>Tillbaka</a>
-        </div>
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
-          <h2>Statistik</h2>
-        </div>
-      </div>
-    </div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+    <a href="/public/account" class="btn btn-primary btn-lg"><span
+          class="glyphicon glyphicon-chevron-left"></span>Tillbaka</a>
   </div>
   <div class="container">
     <table class="table table-hover">
@@ -64,6 +57,5 @@
         </tbody>
       </table>
     </div>
-
   </div>
 {% endblock %}

@@ -15,7 +15,7 @@ class Controller
 
     $this->twigloader = new \Twig_Loader_Filesystem("../app/View");
     $this->twig = new \Twig_Environment($this->twigloader, [
-        'cache' => "../twigcache/",
+        //'cache' => "../twigcache/",
         'debug' => true,
         'auto_reload' => true,
         'autoescape' => false,
