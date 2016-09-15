@@ -28,7 +28,7 @@ class Admin
    * @param integer $id     : userID
    * @return \Stample\ViewModel\Shift array
    */
-  public function getShiftsFromUserID($id)
+  public static function getShiftsFromUserID($id)
   {
     $stmt = Database::getInstance()->getConnection()->prepare(
         "SELECT  checkins.user, checkins.stamp as checkin_time, checkouts.stamp as checkout_time FROM 

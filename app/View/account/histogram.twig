@@ -1,6 +1,7 @@
 <ul class="nav nav-tabs" id="statis">
   <li class="active"><a href="#vecka" data-toggle="tab">Vecka</a></li>
   <li><a href="#monad" data-toggle="tab">Månad</a></li>
+  <li><a href="#stample" data-toggle="tab">Stämplingar</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade active in" id="vecka">
@@ -83,6 +84,28 @@
           </div>
         {% endfor %}
       </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="stample">
+    <div class="well well-sm">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Instämpling</th>
+          <th>Utstämpling</th>
+          <th>Antal Timmar</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for shift in shifts %}
+          <tr>
+            <td>{{ shift.startTime }}</td>
+            <td>{{ shift.endTime }}</td>
+            <td>{{ shift.hours }}:{{ shift.minutes }}h</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

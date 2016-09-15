@@ -4,6 +4,7 @@ namespace Stample\Controller;
 use \Stample\Core\Controller;
 use \Stample\Helpers\Redirect;
 use \Stample\Helpers\Session;
+use Stample\Model\Admin;
 
 class Account extends Controller
 {
@@ -20,6 +21,7 @@ class Account extends Controller
       $this->user->generateHistogram();
     $this->view('account/index', [
         'user' => $this->user->getViewModel(),
+        'shifts' => Admin::getShiftsFromUserID($this->user->getId()),
     ]);
   }
 
