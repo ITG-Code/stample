@@ -3,55 +3,65 @@
 {% block tillbaka %}/public/home{% endblock %}
 {% block body %}
   <div class="container">
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th>Namn</th>
-        <th>Senaste Aktivitet</th>
-        <th>Status</th>
-      </tr>
-      </thead>
-      <tbody>
-      {% for employee in table %}
-        {% if employee.checkvalue == 0 %}
-          <tr class="success clickable-row" data-href="/public/admin/employee/{{ employee.userid }}">
-            <td>{{ employee.fname }} {{ employee.sname }}</td>
-            <td>Instämplad: {{ employee.stamp }}</td>
-            <td><span class="glyphicon glyphicon-ok"></span></td>
-          </tr>
-        {% else %}
-          <tr class="danger clickable-row" data-href="/public/admin/employee/{{ employee.userid }}">
-            <td>{{ employee.fname }} {{ employee.sname }}</td>
-            <td>Utstämplad: {{ employee.stamp }}</td>
-            <td><span class="glyphicon glyphicon-remove"></span></td>
-          </tr>
-        {% endif %}
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <div class="container">
-    <div class="well">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>Namn</th>
-          <th>Instämpling</th>
-          <th>Utstämpling</th>
-          <th>Antal Timmar</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for shift in shifts %}
+    <ul class="nav nav-tabs" id="statis">
+      <li class="active"><a href="#employees" data-toggle="tab">Anställda</a></li>
+      <li><a href="#shift" data-toggle="tab">Stämplingar</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane fade active in" id="employees">
+        <table class="table table-hover">
+          <thead>
           <tr>
-            <td>{{ shift.fname }} {{ shift.sname }}</td>
-            <td>{{ shift.startTime }}</td>
-            <td>{{ shift.endTime }}</td>
-            <td>{{ shift.hours }}:{{ shift.minutes }}h</td>
+            <th>Namn</th>
+            <th>Senaste Aktivitet</th>
+            <th>Status</th>
           </tr>
-        {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+          {% for employee in table %}
+            {% if employee.checkvalue == 0 %}
+              <tr class="success clickable-row" data-href="/public/admin/employee/{{ employee.userid }}">
+                <td>{{ employee.fname }} {{ employee.sname }}</td>
+                <td>Instämplad: {{ employee.stamp }}</td>
+                <td><span class="glyphicon glyphicon-ok"></span></td>
+              </tr>
+            {% else %}
+              <tr class="danger clickable-row" data-href="/public/admin/employee/{{ employee.userid }}">
+                <td>{{ employee.fname }} {{ employee.sname }}</td>
+                <td>Utstämplad: {{ employee.stamp }}</td>
+                <td><span class="glyphicon glyphicon-remove"></span></td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="tab-pane fade in" id="shift">
+        <div class="container">
+          <div class="well well-sm">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>Namn</th>
+                <th>Instämpling</th>
+                <th>Utstämpling</th>
+                <th>Antal Timmar</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for shift in shifts %}
+                <tr>
+                  <td>{{ shift.fname }} {{ shift.sname }}</td>
+                  <td>{{ shift.startTime }}</td>
+                  <td>{{ shift.endTime }}</td>
+                  <td>{{ shift.hours }}:{{ shift.minutes }}h</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
