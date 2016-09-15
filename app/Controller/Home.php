@@ -19,16 +19,20 @@ class Home extends Controller
 
     $this->view('home/index', []);
   }
-  public function register(){
+
+  public function register()
+  {
     if($this->user->isLoggedIn())
       Redirect::to("/account/home");
 
     $this->view('home/register', []);
   }
-  public function setSkin($args = []){
-    if($args[0] == "darkly"){
+
+  public function setSkin($args = [])
+  {
+    if($args[0] == "darkly") {
       Session::set('skin', 'darkly');
-    }else{
+    } else {
       Session::set('skin', 'flatly');
     }
   }

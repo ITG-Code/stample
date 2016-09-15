@@ -1,5 +1,6 @@
 <?php
 namespace Stample\Core;
+
 use Stample\Helpers\Session;
 
 class Controller
@@ -15,7 +16,7 @@ class Controller
 
     $this->twigloader = new \Twig_Loader_Filesystem("../app/View");
     $this->twig = new \Twig_Environment($this->twigloader, [
-        //'cache' => "../twigcache/",
+      //'cache' => "../twigcache/",
         'debug' => true,
         'auto_reload' => true,
         'autoescape' => false,
@@ -26,7 +27,7 @@ class Controller
 
   public function view($view, $data)
   {
-    $data['skin'] = Session::get('skin') == 'darkly' ? Session::get('skin') : 'flatly' ;
+    $data['skin'] = Session::get('skin') == 'darkly' ? Session::get('skin') : 'flatly';
     echo $this->twig->render($view . ".twig", $data);
   }
 

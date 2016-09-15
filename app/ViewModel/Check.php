@@ -16,6 +16,7 @@ class Check
   public $checkvalue = 1;
   public $user;
   public $stamp;
+
   public function __construct($id, $checkgroup, $checkvalue, $user, $stamp)
   {
     $this->id = $id;

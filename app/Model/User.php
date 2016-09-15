@@ -37,7 +37,8 @@ class User
    * @param integer $id
    * @return void
    */
-  public function employ($id){
+  public function employ($id)
+  {
     $this->id = $id;
     $this->createSelfFromID($this->id);
     $this->generateHistogram();
@@ -73,7 +74,8 @@ class User
   /**
    * @return bool       : true if user is admin, false if not
    */
-  public function isAdmin(){
+  public function isAdmin()
+  {
     return boolval($this->admin);
   }
 
@@ -109,7 +111,7 @@ class User
   /**
    * Fills this objects primary variables and skips $lastCheck and $histogram
    * Best use is for checking if the user is logged in or not
-   * @param integer $id   : userID
+   * @param integer $id : userID
    * @return bool|string  : hashed and salted password on success, false on failure
    */
   private function createSelfFromID($id)
@@ -132,7 +134,7 @@ class User
 
   /**
    * Fills this object with data and fetches the latest check from the database
-   * @param integer $id   : userID
+   * @param integer $id : userID
    * @return bool|string  : hashed and salted password on success, false on failure
    */
   private function createExtendedSelfFromID($id)
@@ -181,7 +183,7 @@ class User
     $sname = $_POST['register-sname'];
     $sname = trim($sname);
 
-    if($password != $passwordConfirm){
+    if($password != $passwordConfirm) {
       return false;
     }
     $password = password_hash($password, PASSWORD_BCRYPT);
@@ -197,7 +199,8 @@ class User
    * Needed data is fetched from $_POST
    * @return bool   : true on success false on failure
    */
-  public function changePassword(){
+  public function changePassword()
+  {
     $originalPassword = $_POST['changepassword-original'];
     $originalPassword = trim($originalPassword);
     $newPassword = $_POST['changepassword-new'];
@@ -205,7 +208,7 @@ class User
     $passwordConfirm = $_POST['changepassword-confirm'];
     $passwordConfirm = trim($passwordConfirm);
 
-    if($newPassword != $passwordConfirm){
+    if($newPassword != $passwordConfirm) {
       return false;
     }
     $this->prepare();
@@ -221,7 +224,7 @@ class User
   }
 
   /**
-   * @param $id   : userID
+   * @param $id : userID
    * @return bool : true if the user id exists, false if not
    */
   public function doesIDExist($id)
@@ -266,7 +269,8 @@ class User
   /**
    * @return integer
    */
-  public function getID(){
+  public function getID()
+  {
     return $this->id;
   }
 

@@ -116,7 +116,7 @@ class HistogramUnit
     $remainder = $workPercentage;
     while($remainder > 100) {
       array_push($this->graphData, 100);
-      $remainder-=100;
+      $remainder -= 100;
     }
     array_push($this->graphData, $remainder);
   }

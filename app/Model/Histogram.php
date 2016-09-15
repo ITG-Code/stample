@@ -31,8 +31,8 @@ class Histogram
 
   /**
    * Creates HistogramUnits that are $interval long
-   * @param \DateTime $startTime            : Search for DateTimes bigger than this one
-   * @param \DateTime $periodEnd            : Search for DateTimes smaller than this one
+   * @param \DateTime $startTime : Search for DateTimes bigger than this one
+   * @param \DateTime $periodEnd : Search for DateTimes smaller than this one
    * @param \DateInterval param $interval
    * @param bool $weekOrMonth
    * @return array

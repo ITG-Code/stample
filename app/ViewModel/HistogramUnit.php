@@ -26,6 +26,7 @@ class HistogramUnit
   public $minutes = 0;
   public $seconds = 0;
   public $graphData = [];
+
   public function __construct($user, $start, $dayOrMonth, $workedTime, $hours, $miniutes, $seconds, $graphData)
   {
     $this->user = $user;

@@ -12,6 +12,7 @@ class User
   public $lastCheck;
   public $histogram;
   public $admin;
+
   public function __construct($id, $email, $fname, $sname, $lastCheck, $histogram, $admin)
   {
     $this->id = $id;

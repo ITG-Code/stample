@@ -25,7 +25,7 @@ class Admin
 
   /**
    * This function fetch data from the database with the help of a SQL query, the reason for the query not being a view is becaues of the difficulties of getting the shift start and end from a specific user that can't be defined in the database because the id will change depending on what part of the website you're viewing.
-   * @param integer $id     : userID
+   * @param integer $id : userID
    * @return \Stample\ViewModel\Shift array
    */
   public static function getShiftsFromUserID($id)

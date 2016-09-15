@@ -11,30 +11,34 @@ use Stample\Model\User;
 class Admin extends Controller
 {
   private $adminModel;
+
   public function __construct()
   {
     parent::__construct();
     $this->adminModel = new AdminModel();
   }
 
-  public function index(){
-    if(!$this->user->isLoggedIn()){
+  public function index()
+  {
+    if(!$this->user->isLoggedIn()) {
       Redirect::to('/home/');
     }
-    if(!$this->user->isAdmin()){
+    if(!$this->user->isAdmin()) {
       Redirect::to('/account/');
     }
 
-    $this->view("admin/index",[
-      'table' => $this->adminModel->getTableData(),
-      'shifts' => $this->adminModel->getShiftsFromDepartment(),
+    $this->view("admin/index", [
+        'table' => $this->adminModel->getTableData(),
+        'shifts' => $this->adminModel->getShiftsFromDepartment(),
     ]);
   }
-  public function employee($args = []){
-    if(empty($args)){
+
+  public function employee($args = [])
+  {
+    if(empty($args)) {
       Redirect::to("/admin");
     }
-    if(!$this->user->doesIDExist($args[0])){
+    if(!$this->user->doesIDExist($args[0])) {
       Redirect::to('/admin');
     }
     $employee = new User();
@@ -43,6 +47,6 @@ class Admin extends Controller
     $this->view("admin/employee", [
         'employee' => $employee->getViewModel(),
         'shifts' => $this->adminModel->getShiftsFromUserID($employee->getID()),
-        ]);
+    ]);
   }
 }

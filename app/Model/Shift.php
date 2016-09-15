@@ -20,9 +20,9 @@ class Shift
   private $minutes;
   private $seconds;
 
-  public function __construct($user, $startTime, $endTime, $name= [])
+  public function __construct($user, $startTime, $endTime, $name = [])
   {
-    if(!empty($name)){
+    if(!empty($name)) {
       $this->fname = $name['fname'];
       $this->sname = $name['sname'];
     }
@@ -48,7 +48,8 @@ class Shift
   /**
    * @return \Stample\ViewModel\Shift
    */
-  public function getViewModel(){
-      return new \Stample\ViewModel\Shift($this->user, $this->fname, $this->sname, $this->startTime, $this->endTime, $this->hours, $this->minutes, $this->seconds);
+  public function getViewModel()
+  {
+    return new \Stample\ViewModel\Shift($this->user, $this->fname, $this->sname, $this->startTime, $this->endTime, $this->hours, $this->minutes, $this->seconds);
   }
 }
