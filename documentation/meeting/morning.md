@@ -67,3 +67,6 @@ Igår lade Hannes till en progress bar på varje på statistiksvisningen. Lite o
 
 ## 2016-09-15
 * Igår blev Hannes ledsen eftersom hans funktion inte fungerade. Hannes och Emil diskuterade runt problemet men löste det inte. Detta är den sista stora funktionen vi skulle vilja implementera. Emil matade in data i databasen och buggtestade med Pontus. Pontus bugg testade med Emil och flyttade lite på knappar på sidan för att få det att se lite bättre ut och mer symetriskt. Vi börja dagen med att hålla en presentation som är 5 minuter lång, efter detta ska vi jobba vidare med projektet efter lunch. Hannes ska twigifiera Pontus nya implement och kolla lite till på att expandera månader och ta med varje dag i det. (det är vad som krånglar) Emil ska rensa databasen på onödig data, vi ska även se till så att alla buggar vi hittade igår fungerar. Pontus ska skriva på en utvärdering och plugga PHP. 
+
+## 2016-09-16
+* Sista dagen i skolan då vi kan arbeta med projektet innan måndag, vi är klara med alla huvudfunktioner som vi ville att skolan skulle ha från början samt efter vi gjorde en reflektion av projektplanen. Däremot några av de senare önskemål från Stefan har vi inte hunnit göra klart. Idag planerar vi att spendera hela dagen till att göra en presentation.
