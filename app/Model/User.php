@@ -1,6 +1,5 @@
 <?php
 namespace Stample\Model;
-
 use \Stample\Core\Database;
 use \Stample\Helpers\Session;
 

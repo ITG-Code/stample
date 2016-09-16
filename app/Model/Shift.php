@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: hannes.kindstrommer
- * Date: 2016-09-09
- * Time: 10:28
- */
 
 namespace Stample\Model;
 
