@@ -16,10 +16,9 @@ class Controller
 
     $this->twigloader = new \Twig_Loader_Filesystem("../app/View");
     $this->twig = new \Twig_Environment($this->twigloader, [
-      //'cache' => "../twigcache/",
         'debug' => true,
         'auto_reload' => true,
-        'autoescape' => false,
+        //'autoescape' => false,
 
     ]);
     $this->twig->addExtension(new \Twig_Extension_Debug());
